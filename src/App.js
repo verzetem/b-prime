@@ -11,7 +11,7 @@ function App() {
 		  <div className="row">
 		    <Nav />
 		    <div className="col-sm-10">
-		      One of three columns
+
 		    </div>
 		  </div>
 		</div>
