@@ -37,54 +37,36 @@ class App extends Component {
   }
 
 componentDidMount() {
-
-	this.fetchTimers()
+  // http://localhost:3130/timers
+  // https://powerful-beyond-25222.herokuapp.com/timers
+  this.fetchTimers()
 }
 
 fetchTimers = () => {
-	// http://localhost:3130/timers
-  // https://powerful-beyond-25222.herokuapp.com/timers
-	fetch("http://localhost:3130/timers")
-	.then(res => res.json())
-	.then(timeData => {
-		this.setState({ structureInfo: timeData.timers })
-		console.log(timeData.timers)
-	})
+  fetch("http://localhost:3130/timers")
+  .then(res => res.json())
+  .then(timeData => {
+    this.setState({ structureInfo: timeData.timers })
+    console.log(timeData.timers)
+  })
 }
 
-notificationActive = () => {
-  this.setState({ notification: true })
-  setTimeout(() => this.notificationHide(), 3000)
-}
+// functions
 
-notificationHide = () => {
-  this.setState({ notification: false })
-}
+// webhook test
 
-notifMsgGreen = () => {
-  let notification = this.state.notification
-  let notifClass = !notification ? null : "show"
-  return (
-    <div id="notif" className={ notifClass }><span className="notif-text">Timer Added</span></div>
-    )
-}
-
-notificationActiveRed = () => {
-  this.setState({ notificationRed: true })
-  setTimeout(() => this.notificationHideRed(), 3000)
-}
-
-notificationHideRed = () => {
-  this.setState({ notificationRed: false })
-}
-
-notifMsgRed = () => {
-  let notificationRed = this.state.notificationRed
-  let notifClassRed = !notificationRed ? null : "show"
-  return (
-    <div id="notif-red" className={ notifClassRed }><span className="notif-text-red">Timer Deleted</span></div>
-    )
-}
+// webhook = (e) => {
+//   // e.preventDefault()
+//   let url = "https://discordapp.com/api/webhooks/571462934362980357/N2k1543TcMdwA-KGlJTsaZqGXEE_jQeVWGJgL2AzLa_8mI2iNH7GPvlAUAMZjo4fZhVr"
+//   fetch(url, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json"
+//     },
+//     content: JSON.stringify("wake n bake!"),
+//     muteHttpExceptions: true
+//   })
+// }
 
 nameListen = (e) => {
   let input = e.target.value
@@ -194,21 +176,16 @@ onSubmit = (e) => {
   let strucInfo = this.state.structureInfo
   let newStruc = this.state.newStructure
   let newStrucTime = newStruc.newTime
-  let time = this.timeConversion
-  let pst = this.pstConversion
-  let mst = this.mstConversion
-  let cst = this.cstConversion
-  let est = this.estConversion
   if (newStruc.newName.length === 0 || newStruc.newLocation.length === 0 || newStrucTime.days.length === 0 || newStrucTime.minutes.length === 0 || newStrucTime.hours.length === 0 || newStrucTime.seconds.length === 0) {
-    return swal(
-		  <div>
-		    <h1 style={{ color: "black" }}>Error:</h1>
-		    <p style={{ color: "black" }}>
-		      Please fill out <strong>ALL</strong> fields and submit again.
-		    </p>
-		  </div>
-		)
+    return (
+    	swal ( "Error" ,  "Please fill out ALL fields and submit again" ,  "error" )
+    	)
   }
+  let time = this.timeConversion()
+  let pst = this.pstConversion()
+  let mst = this.mstConversion()
+  let cst = this.cstConversion()
+  let est = this.estConversion()
   // http://localhost:3130/timers
   // https://powerful-beyond-25222.herokuapp.com/timers
   fetch("http://localhost:3130/timers", {
@@ -297,6 +274,40 @@ onOpenModal = (e, id) => {
 
 onCloseModal = () => {
   this.setState({ modalOpen: false })
+}
+
+notificationActive = () => {
+  this.setState({ notification: true })
+  setTimeout(() => this.notificationHide(), 3000)
+}
+
+notificationHide = () => {
+  this.setState({ notification: false })
+}
+
+notifMsgGreen = () => {
+  let notification = this.state.notification
+  let notifClass = !notification ? null : "show"
+  return (
+    <div id="notif" className={ notifClass }><span className="notif-text">Timer Added</span></div>
+    )
+}
+
+notificationActiveRed = () => {
+  this.setState({ notificationRed: true })
+  setTimeout(() => this.notificationHideRed(), 3000)
+}
+
+notificationHideRed = () => {
+  this.setState({ notificationRed: false })
+}
+
+notifMsgRed = () => {
+  let notificationRed = this.state.notificationRed
+  let notifClassRed = !notificationRed ? null : "show"
+  return (
+    <div id="notif-red" className={ notifClassRed }><span className="notif-text-red">Timer Deleted</span></div>
+    )
 }
 
 render() {
