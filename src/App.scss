@@ -15,6 +15,7 @@ body {
 
 div.nav {
   background-color: #2C2D33;
+  border-radius: 3px;
 }
 
 nav.nav {
@@ -62,7 +63,7 @@ nav.nav {
 }
 
 .home {
-  margin: 5% auto 0 auto;
+  margin: 1% auto 0 auto;
   text-align: center;
   .home-desc {
     width: 800px;
@@ -71,4 +72,88 @@ nav.nav {
 
 hr {
   background-color: rgba(255,255,255,0.25);
+}
+
+.return-home {
+  color: #FFF;
+  transition: all 0.3s;
+  &:hover {
+    color: #8ECAFF;
+  }
+}
+
+.form-group {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.form-inline {
+  display: block; 
+}
+
+.input-one {
+  margin: 0 auto 15px auto;
+  text-align: center;
+  width: 300px;
+}
+
+.input-two {
+  margin-right: auto !important;
+  margin-left: 5px !important;
+  text-align: center;
+  width: 125px !important;
+}
+
+#notif {
+  display: flex;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 100%;
+  height: 30px;
+  background-color: #2196F3;
+  border: solid 1px #222;
+  border-radius: 5px;
+  margin: 1% auto 0 auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  span.notif-text {
+    margin: auto;
+    font-size: 1.2em;
+    color: #FFF;
+  }
+}
+
+#notif-red {
+  display: flex;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 100%;
+  height: 30px;
+  background-color: rgb(255, 111, 111);
+  border: solid 1px #222;
+  border-radius: 5px;
+  margin: 1% auto 0 auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  span.notif-text-red {
+    margin: auto;
+    font-size: 1.2em;
+    color: #FFF;
+  }
+}
+
+#notif-red.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#notif.show {
+  opacity: 1;
+  visibility: visible;
 }

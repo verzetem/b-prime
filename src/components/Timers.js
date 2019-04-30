@@ -1,5 +1,7 @@
 import React from 'react'
 
+import AddTimer from './AddTimer'
+
 const Timers = () => {
 	return (
 		<div className="col-sm-10 home">
@@ -25,6 +27,7 @@ const Timers = () => {
 			    </tr>
 			  </tbody>
 			</table>
+			<AddTimer />
 		</div>
 		)
 }

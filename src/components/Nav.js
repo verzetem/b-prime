@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 // {window.location.pathname === "/" ? "nav-button active" : "nav-button"}
 
-const Nav = () => {
+const Nav = ({ structureCount }) => {
 	return (
 		<div className="col-sm-2">
 			<div className="nav">
