@@ -13,8 +13,8 @@ let mappedStructureInfo = structureInfo.map((timer, i) => {
 		      <td>{ timer.name }</td>
 		      <td>{ timer.location }</td>
 		      <td>{ timer.time }</td>
-		      <td><span class="badge badge-success">Open</span></td>
-		      <td><span class="badge badge-danger">Delete</span></td>
+		      <td><span class="badge badge-success" onClick={ (e) => onOpenModal(e, timer.id) }>Open</span></td>
+		      <td><span class="badge badge-danger" onClick={ (e) => deleteTimer(e, timer.id) }>Delete</span></td>
 		    </tr>
 		  </tbody>
 		</React.Fragment>

@@ -164,8 +164,23 @@ button.btn {
 }
 
 .badge-success {
+  font-size: 1em;
   &:hover {
     background-color: #1E7131;
   }
 }
 
+.badge-danger {
+  font-size: 1em;
+  &:hover {
+    background-color: #76202A;
+  }
+}
+
+.tz-card {
+  color: #000;
+}
+
+.styles_modal__gNwvD {
+  border-radius: 8px;
+}

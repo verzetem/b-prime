@@ -18,8 +18,8 @@ const AddTimer = ({ onSubmit, notification, resetInput, newStructure, nameListen
 		    <input type="number" className="form-control input-two" placeholder="Minutes" onChange={(e) => minutesListen(e) } value={newStructure.newTime.minutes} />
 		    <input type="number" className="form-control input-two" placeholder="Seconds" onChange={(e) => secondsListen(e) } value={newStructure.newTime.seconds} />
 			</form>
-			<button type="button" class="btn btn-primary">Submit</button>
-			<button type="button" class="btn btn-warning">Reset</button>
+			<button type="button" class="btn btn-primary" onClick={ (e) => onSubmit(e) }>Submit</button>
+			<button type="button" class="btn btn-warning" onClick={ (e) => resetInput(e) }>Reset</button>
 		</div>
 		)
 }

@@ -7,6 +7,7 @@ import Home from './components/Home'
 import Nav from './components/Nav'
 import Timers from './components/Timers'
 import NotFound from './components/NotFound'
+import TzModal from './components/TzModal'
 
 
 
@@ -322,6 +323,14 @@ render() {
 				</div>
 				{ this.notifMsgGreen() }
         { this.notifMsgRed() }
+        <TzModal
+          timerPST={ this.state.modalInfo.pst }
+          timerMST={ this.state.modalInfo.mst }
+          timerCST={ this.state.modalInfo.cst }
+          timerEST={ this.state.modalInfo.est }
+          modalOpen={ this.state.modalOpen } 
+          onCloseModal={ this.onCloseModal }
+        />
 			</div>
 		</Router>
   )
