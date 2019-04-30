@@ -21,8 +21,9 @@ let mappedStructureInfo = structureInfo.map((timer, i) => {
 		)
 })
 
-	return (
-		<div className="col-sm-10 home">
+	if (structureInfo.length !== 0) {
+		return (
+			<div className="col-sm-10 home">
 			<h1>Timers</h1>
 			
 			<table className="table table-hover table-dark">
@@ -38,7 +39,6 @@ let mappedStructureInfo = structureInfo.map((timer, i) => {
 			  </thead>
 			  { mappedStructureInfo }
 			</table>
-
 			<AddTimer
 				onSubmit={ onSubmit } 
 				newStructure={ newStructure } 
@@ -51,7 +51,26 @@ let mappedStructureInfo = structureInfo.map((timer, i) => {
 				locationListen={ locationListen }
 			/>
 		</div>
-		)
+			)
+	} else {
+		return (
+			<div className="col-sm-10 home">
+				<h1>Timers</h1>
+				<h4>No timers available. Please add a timer using the form below.</h4>
+				<AddTimer
+					onSubmit={ onSubmit } 
+					newStructure={ newStructure } 
+					resetInput={ resetInput } 
+					nameListen={ nameListen } 
+					daysListen={ daysListen } 
+					hoursListen={ hoursListen } 
+					minutesListen={ minutesListen } 
+					secondsListen={ secondsListen } 
+					locationListen={ locationListen }
+				/>
+			</div>
+			)
+	}
 }
 
 export default Timers
