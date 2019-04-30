@@ -13,28 +13,31 @@ body {
   padding-left: 0;
 }
 
-.nav {
+div.nav {
   background-color: #2C2D33;
-  height: 100vh;
-  width: 100% !important;
+}
+
+nav.nav {
+  height: 100%;
 }
 
 .nav-link {
   color: #FFF;
   transition: all 0.3s;
   &:hover {
-    color: #85B9EE;
+    color: #8ECAFF;
   }
 }
 
 .link-style {
-  border-bottom: 5px solid rgba(0,0,0,0);
   transition: all 0.3s;
+  border-radius: 3px;
 }
 
 .link-active {
-  border-bottom: 5px solid #85B9EE;
+  background-color: #547697;
   transition: all 0.3s;
+  border-radius: 3px;
 }
 
 .row {

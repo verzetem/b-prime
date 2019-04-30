@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { DateTime } from 'luxon'
 import './App.scss';
@@ -6,8 +6,36 @@ import './App.scss';
 import Home from './components/Home'
 import Nav from './components/Nav'
 import Timers from './components/Timers'
+import NotFound from './components/NotFound'
 
-function App() {
+
+
+class App extends Component {
+	state = {
+    structureInfo: [],
+    newStructure: {
+      newName: "",
+      newLocation: "",
+      newTime: {
+        days: "",
+        hours: "",
+        minutes: "",
+        seconds: ""
+      }
+    },
+    modalOpen: false,
+    modalInfo: {
+      pst: "",
+      mst: "",
+      cst: "",
+      est: ""
+    },
+    notification: false,
+    notificationRed: false
+  }
+
+render() {
+
   return (
 
 		<Router>
@@ -15,17 +43,16 @@ function App() {
 				<div className="row">
 					{/*structureCount={ this.state.structureInfo.length }*/}
 					<Route path="/" render={ (props) => <Nav /> } />
-					<Route path="/" exact component={ Home } />
 					<Switch>
-						<div className="col-sm-10">
-						<Route path="/timers" exact component={ Timers } />
-						{/*<Route component={ NotFound } />*/}
-						</div>
+						<Route path="/" exact component={ Home } />
+						<Route path="/timers" render={ (props) => <Timers /> } />
+						<Route component={ NotFound } />
 					</Switch>
 				</div>
 			</div>
-			</Router>
+		</Router>
   )
+}
 }
 
 export default App;
