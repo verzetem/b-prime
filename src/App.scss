@@ -157,3 +157,15 @@ hr {
   opacity: 1;
   visibility: visible;
 }
+
+button.btn {
+  margin-top: 20px;
+  margin-right: 5px;
+}
+
+.badge-success {
+  &:hover {
+    background-color: #1E7131;
+  }
+}
+
