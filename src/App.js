@@ -5,6 +5,7 @@ import './App.scss';
 
 import Home from './components/Home'
 import Nav from './components/Nav'
+import Timers from './components/Timers'
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
 					<Route path="/" exact component={ Home } />
 					<Switch>
 						<div className="col-sm-10">
-						{/*<Route path="/timers" exact component={ Timers } />*/}
+						<Route path="/timers" exact component={ Timers } />
 						{/*<Route component={ NotFound } />*/}
 						</div>
 					</Switch>

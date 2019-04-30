@@ -28,11 +28,13 @@ body {
 }
 
 .link-style {
-  width: 100%;
   border-bottom: 5px solid rgba(0,0,0,0);
-  &:hover {
-    border-bottom: 5px solid #85B9EE;
-  }
+  transition: all 0.3s;
+}
+
+.link-active {
+  border-bottom: 5px solid #85B9EE;
+  transition: all 0.3s;
 }
 
 .row {
@@ -54,4 +56,16 @@ body {
     text-align: center;
     font-weight: bold;
   }
+}
+
+.home {
+  margin: 5% auto 0 auto;
+  text-align: center;
+  .home-desc {
+    width: 800px;
+  }
+}
+
+hr {
+  background-color: rgba(255,255,255,0.25);
 }
