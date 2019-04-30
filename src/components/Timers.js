@@ -9,11 +9,11 @@ let mappedStructureInfo = structureInfo.map((timer, i) => {
 		<React.Fragment key={i}>
 			<tbody>
 		    <tr>
-		      <th scope="row">{ timer.id }</th>
+		      {/*<th scope="row">{ timer.id }</th>*/}
 		      <td>{ timer.name }</td>
 		      <td>{ timer.location }</td>
 		      <td>{ timer.time }</td>
-		      <td><span class="badge badge-success" onClick={ (e) => onOpenModal(e, timer.id) }>Open</span></td>
+		      <td><span class="badge badge-info" onClick={ (e) => onOpenModal(e, timer.id) }>Open</span></td>
 		      <td><span class="badge badge-danger" onClick={ (e) => deleteTimer(e, timer.id) }>Delete</span></td>
 		    </tr>
 		  </tbody>
@@ -29,7 +29,7 @@ let mappedStructureInfo = structureInfo.map((timer, i) => {
 			<table className="table table-hover table-dark">
 			  <thead>
 			    <tr>
-			      <th scope="col">Timer ID</th>
+			      {/*<th scope="col">Timer ID</th>*/}
 			      <th scope="col">Structure Name</th>
 			      <th scope="col">Location</th>
 			      <th scope="col">Comes Out</th>

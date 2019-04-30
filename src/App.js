@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { DateTime } from 'luxon'
+import swal from '@sweetalert/with-react'
 import './App.scss';
 
 import Home from './components/Home'
@@ -193,13 +194,20 @@ onSubmit = (e) => {
   let strucInfo = this.state.structureInfo
   let newStruc = this.state.newStructure
   let newStrucTime = newStruc.newTime
-  let time = this.timeConversion()
-  let pst = this.pstConversion()
-  let mst = this.mstConversion()
-  let cst = this.cstConversion()
-  let est = this.estConversion()
+  let time = this.timeConversion
+  let pst = this.pstConversion
+  let mst = this.mstConversion
+  let cst = this.cstConversion
+  let est = this.estConversion
   if (newStruc.newName.length === 0 || newStruc.newLocation.length === 0 || newStrucTime.days.length === 0 || newStrucTime.minutes.length === 0 || newStrucTime.hours.length === 0 || newStrucTime.seconds.length === 0) {
-    return alert("Fill out ALL fields and Submit again.")
+    return swal(
+		  <div>
+		    <h1 style={{ color: "black" }}>Error:</h1>
+		    <p style={{ color: "black" }}>
+		      Please fill out <strong>ALL</strong> fields and submit again.
+		    </p>
+		  </div>
+		)
   }
   // http://localhost:3130/timers
   // https://powerful-beyond-25222.herokuapp.com/timers
