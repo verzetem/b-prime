@@ -13,8 +13,8 @@ const Nav = ({ structureCount }) => {
 				<div className="row">
 				  <nav className="nav flex-column">
 					  <span className={window.location.pathname === "/" ? "link-active" : "link-style"}><Link className="nav-link" to="/">Home</Link></span>
-					  <span className={window.location.pathname === "/timers" ? "link-active" : "link-style"}><Link className="nav-link" to="/timers">Timers <span class="badge badge-light">{ structureCount }</span></Link></span>
-					  <a className="nav-link disabled" href="#">Dscan</a>
+					  <span className={window.location.pathname === "/timers" ? "link-active" : "link-style"}><Link className="nav-link" to="/timers">Timers <span className="badge badge-light">{ structureCount }</span></Link></span>
+					  <a className="nav-link disabled" href="/">Dscan</a>
 					</nav>
 					</div>
 			</div>

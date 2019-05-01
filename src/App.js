@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { DateTime } from 'luxon'
 import swal from '@sweetalert/with-react'
 import './App.scss';
@@ -47,7 +47,6 @@ fetchTimers = () => {
   .then(res => res.json())
   .then(timeData => {
     this.setState({ structureInfo: timeData.timers })
-    console.log(timeData.timers)
   })
 }
 
