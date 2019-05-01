@@ -37,13 +37,13 @@ class App extends Component {
   }
 
 componentDidMount() {
-  // http://localhost:3130/timers
+  // http://localhost:3130/timers/
   // https://powerful-beyond-25222.herokuapp.com/timers
   this.fetchTimers()
 }
 
 fetchTimers = () => {
-  fetch("https://powerful-beyond-25222.herokuapp.com/timers")
+  fetch("http://localhost:3130/timers/")
   .then(res => res.json())
   .then(timeData => {
     this.setState({ structureInfo: timeData.timers })
@@ -187,7 +187,7 @@ onSubmit = (e) => {
   let est = this.estConversion()
   // http://localhost:3130/timers
   // https://powerful-beyond-25222.herokuapp.com/timers
-  fetch("https://powerful-beyond-25222.herokuapp.com/timers", {
+  fetch("http://localhost:3130/timers/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -219,7 +219,7 @@ deleteTimer = (e, timerId) => {
   strucInfo.map(timer => {
     if (timer.id === timerId) {
 			return (
-				fetch("https://powerful-beyond-25222.herokuapp.com/timers/" + timerId, {
+				fetch("http://localhost:3130/timers/" + timerId, {
 					method: "DELETE",
 					headers: {
 						"Content-Type": "application/json"
@@ -349,14 +349,6 @@ render() {
           modalOpen={ this.state.modalOpen } 
           onCloseModal={ this.onCloseModal }
         />
-        <div class="card bg-dark text-white">
-				  <img src="https://pixelz.cc/wp-content/uploads/2018/08/eve-online-dual-monitor-wallpaper.jpg" class="card-img" alt="..."/>
-				  <div class="card-img-overlay">
-				    <h5 class="card-title">Card title</h5>
-				    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-				    <p class="card-text">Last updated 3 mins ago</p>
-				  </div>
-				</div>
 
 			</div>
 		</Router>

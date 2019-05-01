@@ -23,33 +23,34 @@ let mappedStructureInfo = structureInfo.map((timer, i) => {
 
 	if (structureInfo.length !== 0) {
 		return (
+
 			<div className="col-sm-10 home">
-			<h1>Timers</h1>
-			
-			<table className="table table-hover table-dark">
-			  <thead>
-			    <tr>
-			      {/*<th scope="col">Timer ID</th>*/}
-			      <th scope="col">Structure Name</th>
-			      <th scope="col">Location</th>
-			      <th scope="col">Comes Out</th>
-			      <th scope="col">TZ Card</th>
-			      <th scope="col"> </th>
-			    </tr>
-			  </thead>
-			  { mappedStructureInfo }
-			</table>
-			<AddTimer
-				onSubmit={ onSubmit } 
-				newStructure={ newStructure } 
-				resetInput={ resetInput } 
-				nameListen={ nameListen } 
-				daysListen={ daysListen } 
-				hoursListen={ hoursListen } 
-				minutesListen={ minutesListen } 
-				secondsListen={ secondsListen } 
-				locationListen={ locationListen }
-			/>
+				<h1>Timers</h1>
+				
+				<table className="table table-hover table-dark">
+				  <thead>
+				    <tr>
+				      {/*<th scope="col">Timer ID</th>*/}
+				      <th scope="col">Structure Name</th>
+				      <th scope="col">Location</th>
+				      <th scope="col">Comes Out</th>
+				      <th scope="col">TZ Card</th>
+				      <th scope="col"> </th>
+				    </tr>
+				  </thead>
+				  { mappedStructureInfo }
+				</table>
+				<AddTimer
+					onSubmit={ onSubmit } 
+					newStructure={ newStructure } 
+					resetInput={ resetInput } 
+					nameListen={ nameListen } 
+					daysListen={ daysListen } 
+					hoursListen={ hoursListen } 
+					minutesListen={ minutesListen } 
+					secondsListen={ secondsListen } 
+					locationListen={ locationListen }
+				/>
 		</div>
 			)
 	} else {
