@@ -6,7 +6,7 @@ const TzModal = ({ onCloseModal, modalOpen, timerPST, timerMST, timerCST, timerE
 		return (
 			<Modal open={ modalOpen } onClose={ onCloseModal } center>
 				<h2 className="tz-card">
-					US Time Zone Conversions
+					Time Zone Conversions
 				</h2>
 				<center>
 				<h4 className="tz-card">{ timerPST }</h4>
