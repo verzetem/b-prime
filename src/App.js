@@ -286,14 +286,11 @@ notificationHide = () => {
 
 notifMsgGreen = () => {
   let notification = this.state.notification
-  let notifDefault = notification ? "alert alert-success" : "hidden"
-  let notifShow = !notification ? null : "show"
-  let notifFade = notification ? null : "fade"
-  let hidden = "hidden"
-
+  let notifDefault = "alert alert-success"
+  let notifShow = !notification ? null : " show"
+  let notifFade = notification ? null : " fade"
   return (
-    // <div id="notif" className={ notifClass }><span className="notif-text">Timer Added</span></div>
-    <div className={ notifDefault } hidden role="alert" >
+    <div className={ notifDefault + notifShow + notifFade } role="alert" >
 		  Timer Added!
 		</div>
     )
@@ -309,10 +306,14 @@ notificationHideRed = () => {
 }
 
 notifMsgRed = () => {
-  let notificationRed = this.state.notificationRed
-  let notifClassRed = !notificationRed ? null : "show"
+  let notification = this.state.notificationRed
+  let notifDefault = "alert alert-danger"
+  let notifShow = !notification ? null : " show"
+  let notifFade = notification ? null : " fade"
   return (
-    <div id="notif-red" className={ notifClassRed }><span className="notif-text-red">Timer Deleted</span></div>
+    <div className={ notifDefault + notifShow + notifFade } role="alert" >
+		  Timer Deleted!
+		</div>
     )
 }
 
