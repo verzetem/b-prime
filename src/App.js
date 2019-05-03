@@ -286,9 +286,16 @@ notificationHide = () => {
 
 notifMsgGreen = () => {
   let notification = this.state.notification
-  let notifClass = !notification ? null : "show"
+  let notifDefault = notification ? "alert alert-success" : "hidden"
+  let notifShow = !notification ? null : "show"
+  let notifFade = notification ? null : "fade"
+  let hidden = "hidden"
+
   return (
-    <div id="notif" className={ notifClass }><span className="notif-text">Timer Added</span></div>
+    // <div id="notif" className={ notifClass }><span className="notif-text">Timer Added</span></div>
+    <div className={ notifDefault } hidden role="alert" >
+		  Timer Added!
+		</div>
     )
 }
 

@@ -17,8 +17,8 @@ let mappedStructureInfo = structureInfo.map((timer, i) => {
 		      <td>{ timer.name }</td>
 		      <td>{ timer.location }</td>
 		      <td>{ timer.time }</td>
-		      <td><span class="badge badge-info" onClick={ (e) => onOpenModal(e, timer.id) }>Open</span></td>
-		      <td><span class="badge badge-danger" onClick={ (e) => deleteTimer(e, timer.id) }>Delete</span></td>
+		      <td><span className="badge badge-info" onClick={ (e) => onOpenModal(e, timer.id) }>Open</span></td>
+		      <td><span className="badge badge-danger" onClick={ (e) => deleteTimer(e, timer.id) }>Delete</span></td>
 		    </tr>
 		  </tbody>
 		</React.Fragment>
@@ -28,19 +28,19 @@ let mappedStructureInfo = structureInfo.map((timer, i) => {
 	if (structureInfo.length !== 0) {
 		return (
 
-			<div className="col-lg-5 home">
+			<div className="col-lg-6 home">
 				<h1>Timers</h1>
-				<div class="card text-white bg-dark mb-3" style={{ maxWidth: "18rem", maxHeight: "5rem" }}>
-				   <p class="card-text">Local: { now } <br/> EVE: { gmt }</p>
-						<div class="input-group">
-						  <div class="input-group-prepend">
-						    <label class="input-group-text" for="regionSelect">Region</label>
+				<div className="card text-white bg-dark mb-3" style={{ maxWidth: "18rem", maxHeight: "5rem" }}>
+				   <p className="card-text">Local: { now } <br/> EVE: { gmt }</p>
+						<div className="input-group">
+						  <div className="input-group-prepend">
+						    <label className="input-group-text" htmlFor="regionSelect">Region</label>
 						  </div>
-						  <select class="custom-select" id="regionSelect">
+						  <select className="custom-select" id="regionSelect">
 						    <option selected>Choose...</option>
-						    <option value="1">U.S. / Canada</option>
+						    <option value="1">Australia</option>
 						    <option value="2">Europe</option>
-						    <option value="3">Australia</option>
+						    <option value="3">U.S. / Canada</option>
 						  </select>
 						</div>
 				</div>
@@ -73,8 +73,22 @@ let mappedStructureInfo = structureInfo.map((timer, i) => {
 			)
 	} else {
 		return (
-			<div className="col-lg-5 home">
+			<div className="col-lg-6 home">
 				<h1>Timers</h1>
+				<div className="card text-white bg-dark mb-5" style={{ maxWidth: "18rem", maxHeight: "5rem" }}>
+				   <p className="card-text">Local: { now } <br/> EVE: { gmt }</p>
+						<div className="input-group">
+						  <div className="input-group-prepend">
+						    <label className="input-group-text" htmlFor="regionSelect">Region</label>
+						  </div>
+						  <select className="custom-select" id="regionSelect">
+						    <option defaultValue>Choose...</option>
+						    <option value="1">Australia</option>
+						    <option value="2">Europe</option>
+						    <option value="3">U.S. / Canada</option>
+						  </select>
+						</div>
+				</div>
 				<h4>No timers available. Please add a timer using the form below.</h4>
 				<AddTimer
 					onSubmit={ onSubmit } 
