@@ -196,6 +196,17 @@ button.btn {
   }
 }
 
+.col-lg-5 {
+  background-color: #2D2E34;
+  border: solid 1px #191A1D;
+  border-radius: 5px;
+}
+
+.card.text-white.bg-dark {
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .tz-card {
   color: #000;
 }
@@ -208,4 +219,8 @@ button.btn {
 
 table {
   overflow-y: scroll;
+  border-radius: 5px;
+  th {
+    border-radius: 5px 5px 0 0;
+  }
 }
