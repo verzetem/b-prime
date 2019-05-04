@@ -9,8 +9,7 @@ import Nav from './components/Nav'
 import Timers from './components/Timers'
 import NotFound from './components/NotFound'
 import TzModal from './components/TzModal'
-
-
+import InfoTiles from './components/InfoTiles'
 
 class App extends Component {
 	state = {
@@ -346,6 +345,7 @@ render() {
                 deleteTimer={ this.deleteTimer } /> } />
 						<Route component={ NotFound } />
 					</Switch>
+					<Route path="/" render={ (props) => <InfoTiles /> } />
 				</div>
 				{ this.notifMsgGreen() }
         { this.notifMsgRed() }
