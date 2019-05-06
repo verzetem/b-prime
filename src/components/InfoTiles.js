@@ -1,9 +1,10 @@
 import React from 'react'
+import Updates from './Updates'
 
 const InfoTiles = () => {
 	return (
 		<div className="col-lg-3 home">
-			<div className="card" style={{ width: "auto", padding: "0 !important", marginRight: "auto", marginLeft: "auto" }}>
+			<div className="card info-border" style={{ width: "auto", padding: "0", marginRight: "auto", marginLeft: "auto" }}>
 			  <img src="https://i.imgur.com/ZtYtSd1.png" className="card-img-top" alt="..."/>
 			  <div className="card-body">
 			    <h5 className="card-title">Placeholder</h5>
@@ -11,6 +12,7 @@ const InfoTiles = () => {
 			    <a href="#" className="btn btn-primary">Go somewhere</a>
 			  </div>
 			</div>
+			<Updates />
 		</div>
 		)
 }

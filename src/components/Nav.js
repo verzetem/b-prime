@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from "react-router-dom"
+import Updates from './Updates'
 
 // {window.location.pathname === "/" ? "nav-button active" : "nav-button"}
 
 const Nav = ({ structureCount }) => {
 	return (
-		<div className="col-sm-2">
-			<div className="nav">
+		<div className="col-sm-2" style={{ marginRight: "auto !important", marginLeft: "auto !important" }}>
+			<div className="nav" style={{ marginRight: "auto !important", marginLeft: "auto !important" }}>
 				<div className="logo">
 					<h6>BOREDOM PRIME</h6>
 				</div>

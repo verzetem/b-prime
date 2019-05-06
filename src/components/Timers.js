@@ -30,7 +30,7 @@ let mappedStructureInfo = structureInfo.map((timer, i) => {
 
 			<div className="col-md-7 home">
 				<h1>Timers</h1>
-				<div className="card text-white bg-dark mb-3" style={{ maxWidth: "18rem", maxHeight: "5rem" }}>
+				<div className="card text-white bg-dark mb-3" style={{ maxWidth: "18rem" }}>
 				   <p className="card-text">Local: { now } <br/> EVE: { gmt }</p>
 						<div className="input-group">
 						  <div className="input-group-prepend">
@@ -75,7 +75,7 @@ let mappedStructureInfo = structureInfo.map((timer, i) => {
 		return (
 			<div className="col-md-7 home">
 				<h1>Timers</h1>
-				<div className="card text-white bg-dark mb-5" style={{ maxWidth: "18rem", maxHeight: "5rem" }}>
+				<div className="card text-white bg-dark mb-5" style={{ maxWidth: "18rem" }}>
 				   <p className="card-text">Local: { now } <br/> EVE: { gmt }</p>
 						<div className="input-group">
 						  <div className="input-group-prepend">

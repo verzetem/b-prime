@@ -23,8 +23,9 @@ div.nav {
   border: solid 1px #191A1D;
   border-top: 0;
   border-radius: 5px;
-  width: 100%;
+  width: auto;
   height: auto;
+  margin: 0
 }
 
 nav.nav {
@@ -56,11 +57,13 @@ nav.nav {
 }
 
 .logo {
-  // position: aboslute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-right: auto;
   margin-left: auto;
   background-color: #41424D;
-  height: 50px;
+  height: 3.125em;
   width: 100%;
   border-radius: 0 0 5px 5px;
   h6 {
@@ -69,6 +72,23 @@ nav.nav {
     text-align: center;
     font-weight: bold;
   }
+}
+
+#updates {
+  margin-bottom: 1em;
+  transition: all 0.3s;
+  &:hover{
+    color: #8ECAFF;
+  }
+}
+
+.update-card {
+  overflow-x: hidden; 
+  overflow-y: scroll;
+}
+
+.update-card::-webkit-scrollbar { 
+  display: none; 
 }
 
 .home {
@@ -140,6 +160,12 @@ select {
   text-align: center;
   width: 100%;
   transition: all 0.3s;
+}
+
+.alert-warning {
+  width: 32em;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 #notif {
@@ -238,22 +264,31 @@ button.btn {
   margin-left: auto !important;
 }
 
+.info-border {
+  border: solid 1px #191A1D;
+}
+
 .card.text-white.bg-dark {
   margin-right: auto;
   margin-left: auto;
-  .card-text {
-    height: 2em;
-  }
+}
+.noscroll {
+  overflow-y: scroll;
 }
 
 .tz-card {
+  margin-top: 0.5em;
   color: #000;
 }
 
 .styles_modal__gNwvD {
   border-radius: 8px;
-  max-height: 500px;
+  max-height: 32em;
   overflow-y: scroll !important;
+}
+
+.styles_modal__gNwvD::-webkit-scrollbar { 
+  display: none; 
 }
 
 table {
@@ -263,3 +298,41 @@ table {
     border-radius: 5px 5px 0 0;
   }
 }
+
+///////////////////////////////////////// bouncing down arrow ///////////
+a { color: white; text-decoration: none; }
+
+.arrow {
+  position: absolute;
+  bottom: 5;
+  left: 0;
+  text-align: center;
+  margin: 8% 0;
+  font-size: 0.8em;
+}
+.bounce {
+  -moz-animation: bounce 2s infinite;
+  -webkit-animation: bounce 2s infinite;
+  animation: bounce 2s infinite;
+}
+
+.update-dn-arrow {
+  color: #FFF !important;
+}
+
+.tz-dn-arrow {
+  color: #000 !important;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+///////////////////////////////////////////////////////

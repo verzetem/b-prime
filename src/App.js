@@ -42,7 +42,7 @@ componentDidMount() {
 }
 
 fetchTimers = () => {
-  fetch("http://localhost:3130/timers/")
+  fetch("http://192.168.1.7:3130/timers/")
   .then(res => res.json())
   .then(timeData => {
     this.setState({ structureInfo: timeData.timers })
