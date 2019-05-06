@@ -28,7 +28,7 @@ let mappedStructureInfo = structureInfo.map((timer, i) => {
 	if (structureInfo.length !== 0) {
 		return (
 
-			<div className="col-lg-6 home">
+			<div className="col-md-7 home">
 				<h1>Timers</h1>
 				<div className="card text-white bg-dark mb-3" style={{ maxWidth: "18rem", maxHeight: "5rem" }}>
 				   <p className="card-text">Local: { now } <br/> EVE: { gmt }</p>
@@ -37,7 +37,7 @@ let mappedStructureInfo = structureInfo.map((timer, i) => {
 						    <label className="input-group-text" htmlFor="regionSelect">Region</label>
 						  </div>
 						  <select className="custom-select" id="regionSelect">
-						    <option selected>Choose...</option>
+						    <option selected>!Work in progress!</option>
 						    <option value="1">Australia</option>
 						    <option value="2">Europe</option>
 						    <option value="3">U.S. / Canada</option>
@@ -73,7 +73,7 @@ let mappedStructureInfo = structureInfo.map((timer, i) => {
 			)
 	} else {
 		return (
-			<div className="col-lg-6 home">
+			<div className="col-md-7 home">
 				<h1>Timers</h1>
 				<div className="card text-white bg-dark mb-5" style={{ maxWidth: "18rem", maxHeight: "5rem" }}>
 				   <p className="card-text">Local: { now } <br/> EVE: { gmt }</p>

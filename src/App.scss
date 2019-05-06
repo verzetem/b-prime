@@ -74,8 +74,9 @@ nav.nav {
 .home {
   margin: 0;
   text-align: center;
+  height: 100%;
   .home-desc {
-    width: 800px;
+    width: 100%;
   }
 }
 
@@ -224,6 +225,17 @@ button.btn {
   border: solid 1px #191A1D;
   border-top: 0;
   border-radius: 0 0 5px 5px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.col-md-7 {
+  background-color: #2D2E34;
+  border: solid 1px #191A1D;
+  border-top: 0;
+  border-radius: 0 0 5px 5px;
+  margin-right: auto !important;
+  margin-left: auto !important;
 }
 
 .card.text-white.bg-dark {
