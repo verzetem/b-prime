@@ -98,6 +98,9 @@ nav.nav {
   .home-desc {
     width: 100%;
   }
+  .add-timer {
+    margin-top: 1%;
+  }
 }
 
 hr {
@@ -129,11 +132,18 @@ table {
   font-size: 0.9em;
 }
 
+thead, tbody, th, table {
+  border: thin;
+  border-top: hidden;
+  border-radius: 5px;
+}
+
 .table-scrollable {
   width: 100%;
-  max-height: 30em;
+  max-height: 32em;
   overflow-x: hidden;
   overflow-y: scroll;
+  border-radius: 5px !important;
 }
 
 .table-scrollable::-webkit-scrollbar { 

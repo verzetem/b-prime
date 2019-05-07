@@ -14,7 +14,7 @@ const AddTimer = ({
 	secondsListen
 }) => {
 	return (
-		<div className="home">
+		<div className="home add-timer">
 			<h1>Add Timer</h1>
 
 			<form>
