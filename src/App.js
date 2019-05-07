@@ -43,7 +43,7 @@ class App extends Component {
   }
 
   fetchTimers = () => {
-    fetch("http://localhost:3130/timers/")
+    fetch("http://192.168.1.7:3130/timers/")
       .then(res => res.json())
       .then(timeData => {
         this.setState({ structureInfo: timeData.timers })
@@ -234,7 +234,7 @@ class App extends Component {
     let mst = this.mstConversion()
     let cst = this.cstConversion()
     let est = this.estConversion()
-    fetch("http://localhost:3130/timers/", {
+    fetch("http://192.168.1.7:3130/timers/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -251,7 +251,6 @@ class App extends Component {
     })
       .then(response => response.json())
       .then(response => {
-        console.log("fucking response", response)
         this.setState({
           structureInfo: strucInfo.concat({
             id: response.id,
@@ -265,6 +264,13 @@ class App extends Component {
           })
         })
       })
+      .catch(error => {
+        swal(
+        "Error",
+        `${error.message}`,
+        "error"
+        )
+      })
     this.resetInput()
     this.notificationActive()
   }
@@ -274,7 +280,7 @@ class App extends Component {
     let strucInfo = this.state.structureInfo
     strucInfo.map(timer => {
       if (timer.id === timerId) {
-        return fetch("http://localhost:3130/timers/" + timerId, {
+        return fetch("http://192.168.1.7:3130/timers/" + timerId, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json"
@@ -285,10 +291,18 @@ class App extends Component {
               return timer.id !== timerId
             })
           })
+        ).then(
+          this.notificationActiveRed()
+        ).catch(error => {
+        swal(
+        "Error",
+        `${error.message}`,
+        "error"
         )
+      })
+
       } else return null
     })
-    this.notificationActiveRed()
   }
 
 
@@ -358,13 +372,15 @@ class App extends Component {
   notifMsgGreen = () => {
     let notification = this.state.notification
     let notifDefault = "alert alert-success"
-    let notifShow = !notification ? null : " show"
-    let notifFade = notification ? null : " fade"
-    return (
+    let notifShow = !notification ? "" : " show"
+    let notifFade = notification ? "" : " fade"
+    if (notification) {
+      return (
       <div className={notifDefault + notifShow + notifFade} role="alert">
         Timer Added!
       </div>
-    )
+      )
+    }
   }
 
   notificationActiveRed = () => {
@@ -378,14 +394,16 @@ class App extends Component {
 
   notifMsgRed = () => {
     let notification = this.state.notificationRed
-    let notifDefault = "alert alert-danger"
-    let notifShow = !notification ? null : " show"
-    let notifFade = notification ? null : " fade"
-    return (
-      <div className={notifDefault + notifShow + notifFade} role="alert">
-        Timer Deleted!
-      </div>
-    )
+    let notifDefault = "alert alert-danger "
+    let notifShow = !notification ? "" : " show"
+    let notifFade = notification ? "" : " fade"
+    if (notification) {
+      return (
+        <div className={notifDefault + notifShow + notifFade} role="alert">
+          Timer Deleted!
+        </div>
+        )
+    }
   }
 
 
