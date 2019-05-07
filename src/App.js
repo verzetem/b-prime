@@ -42,7 +42,7 @@ class App extends Component {
   }
 
   fetchTimers = () => {
-    fetch("http://192.168.1.7:3130/timers/")
+    fetch("https://powerful-beyond-25222.herokuapp.com/timers/")
       .then(res => res.json())
       .then(timeData => {
         this.setState({ structureInfo: timeData.timers });
@@ -233,7 +233,7 @@ class App extends Component {
     let mst = this.mstConversion();
     let cst = this.cstConversion();
     let est = this.estConversion();
-    fetch("http://192.168.1.7:3130/timers/", {
+    fetch("https://powerful-beyond-25222.herokuapp.com/timers/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -273,7 +273,7 @@ class App extends Component {
     let strucInfo = this.state.structureInfo;
     strucInfo.map(timer => {
       if (timer.id === timerId) {
-        return fetch("http://192.168.1.7:3130/timers/" + timerId, {
+        return fetch("https://powerful-beyond-25222.herokuapp.com/timers/" + timerId, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json"
@@ -408,8 +408,8 @@ class App extends Component {
             </Switch>
             <Route path="/" render={props => <InfoTile />} />
           </div>
-          {/*{ this.notifMsgGreen() }*/}
-          {/*{ this.notifMsgRed() }*/}
+          { this.notifMsgGreen() }
+          { this.notifMsgRed() }
           <TzModal
             timerPST={this.state.modalInfo.pst}
             timerMST={this.state.modalInfo.mst}

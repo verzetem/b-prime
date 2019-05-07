@@ -61,7 +61,7 @@ const TimersMain = ({
 			<div className="col-md-7 home">
 				<h1>Timers</h1>
 				<div
-					className="card text-white bg-dark mb-3"
+					className="card text-white bg-dark"
 					style={{ maxWidth: "18rem" }}
 				>
 					<p className="card-text">
@@ -109,7 +109,7 @@ const TimersMain = ({
 					<tr>
 						<td>
 							<div
-								style={{ width: "100%", maxHeight: "30em", overflow: "auto" }}
+								className="table-scrollable"
 							>
 								<table className="table table-hover table-dark">
 									{mappedStructureInfo}
