@@ -1,7 +1,7 @@
 import React from 'react'
 import Updates from './Updates'
 
-const InfoTiles = () => {
+const InfoTile = () => {
 	return (
 		<div className="col-lg-3 home">
 			<div className="card info-border" style={{ width: "auto", padding: "0", marginRight: "auto", marginLeft: "auto" }}>
@@ -9,7 +9,7 @@ const InfoTiles = () => {
 			  <div className="card-body">
 			    <h5 className="card-title">Placeholder</h5>
 			    <p className="card-text">Placeholder text</p>
-			    <a href="#" className="btn btn-primary">Go somewhere</a>
+			    <a href="#]" className="btn btn-primary">Placeholder button</a>
 			  </div>
 			</div>
 			<Updates />
@@ -17,4 +17,4 @@ const InfoTiles = () => {
 		)
 }
 
-export default InfoTiles
+export default InfoTile

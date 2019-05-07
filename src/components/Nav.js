@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from "react-router-dom"
-import Updates from './Updates'
 
 // {window.location.pathname === "/" ? "nav-button active" : "nav-button"}
 

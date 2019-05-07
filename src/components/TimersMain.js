@@ -3,7 +3,7 @@ import { DateTime } from 'luxon'
 
 import AddTimer from './AddTimer'
 
-const Timers = ({ structureInfo, deleteTimer, notification, modalOpen, onOpenModal, onCloseModal, newStructure, onSubmit, resetInput, nameListen, daysListen, hoursListen, minutesListen, secondsListen, locationListen }) => {
+const TimersMain = ({ structureInfo, deleteTimer, notification, modalOpen, onOpenModal, onCloseModal, newStructure, onSubmit, resetInput, nameListen, daysListen, hoursListen, minutesListen, secondsListen, locationListen }) => {
 
 const now = DateTime.local().toFormat('DD TTT')
 const gmt = DateTime.local().setZone("Iceland").toFormat('DD TTT')
@@ -37,7 +37,7 @@ let mappedStructureInfo = structureInfo.map((timer, i) => {
 						    <label className="input-group-text" htmlFor="regionSelect">Region</label>
 						  </div>
 						  <select className="custom-select" id="regionSelect">
-						    <option selected>!Work in progress!</option>
+						    <option defaultValue>!Work in progress!</option>
 						    <option value="1">Australia</option>
 						    <option value="2">Europe</option>
 						    <option value="3">U.S. / Canada</option>
@@ -82,7 +82,7 @@ let mappedStructureInfo = structureInfo.map((timer, i) => {
 						    <label className="input-group-text" htmlFor="regionSelect">Region</label>
 						  </div>
 						  <select className="custom-select" id="regionSelect">
-						    <option defaultValue>Choose...</option>
+						    <option defaultValue>!Work in progress!</option>
 						    <option value="1">Australia</option>
 						    <option value="2">Europe</option>
 						    <option value="3">U.S. / Canada</option>
@@ -106,4 +106,4 @@ let mappedStructureInfo = structureInfo.map((timer, i) => {
 	}
 }
 
-export default Timers
+export default TimersMain

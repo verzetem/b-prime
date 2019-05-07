@@ -12,9 +12,9 @@ const Home = () => {
 				<p>This web app has potential to become more than just a structure timer helper, and I plan to implement my own <strong>Dscan</strong> page because why not. Stay tuned.</p>
 				<br />
 				<p>Please, send any suggestions (<strong style={{ color: "orange" }}>and especially bugs</strong>) to <strong style={{ borderBottom: "3px solid #85B9EE", color: "#85B9EE" }}>Rocar Evaal</strong></p>
-				<p style={{ color: "red" }}>P.S. web app is for desktop/laptop displays *only* at this time. Mobile responsiveness coming soon.</p>
+				<p style={{ color: "red" }}> ~Currently supports USTZ ONLY. This will change soon <br/> ~web app is for desktop/laptop displays *only* at this time. Mobile responsiveness coming soon. <br/> </p>
 			</div>
-			
+
 		</div>
 		)
 }
