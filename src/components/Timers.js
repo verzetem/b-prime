@@ -84,9 +84,6 @@ const TimersMain = ({
 				<br />
 				<table
 					style={{
-						cellspacing: "0",
-						cellpadding: "0",
-						border: "0",
 						width: "100%"
 					}}
 				>
@@ -111,7 +108,7 @@ const TimersMain = ({
 							<div
 								className="table-scrollable"
 							>
-								<table className="table table-hover table-dark">
+								<table className="table table-hover table-dark" style={{ cellspacing: "0 !important", cellpadding: "1 !important" }}>
 									{mappedStructureInfo}
 								</table>
 							</div>

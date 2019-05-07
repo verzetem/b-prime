@@ -21,18 +21,30 @@ const Updates = () => {
 				>
 					<div className="card-body update-card">
 						<p className="card-text">
-							May 7 - Locked first timer row/made timer table scrollable
-							<hr />
-							May 6 - Dev build Deployed 🎉🎉🎉🎉🎉
-							<hr />
-							May 5 - Cleaned up CSS, ready to deploy.
-							{/*<div className="arrow bounce">
-							  <a className="fas fa-angle-down fa-2x updates-dn-arrow" href="#"></a>
-							</div>*/}
-							<hr />
-							May 3 - Added local and EVE times, cleaned up CSS.
-							<hr />
-							Apr 30 - MVP complete.
+							<h5 class="card-title">May 7</h5>
+							- Locked first timer row/made timer table scrollable
+							<br/>
+							- Added confirm delete popup
+						</p>
+						<hr/>
+						<p className="card-text">
+							<h5 class="card-title">May 6</h5>
+							- Dev build Deployed 🎉🎉🎉🎉🎉
+						</p>
+						<hr/>
+						<p className="card-text">
+							<h5 class="card-title">May 5</h5>
+							- Cleaned up CSS, ready to deploy
+						</p>
+						<hr/>
+						<p className="card-text">
+							<h5 class="card-title">May 3</h5>
+							- Added local and EVE times, cleaned up CSS
+						</p>
+						<hr/>
+						<p className="card-text">
+							<h5 class="card-title">Apr 30</h5>
+							- MVP complete
 						</p>
 					</div>
 				</div>
