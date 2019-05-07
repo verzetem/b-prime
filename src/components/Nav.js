@@ -37,10 +37,7 @@ const Nav = ({ structureCount }) => {
 									: "link-style"
 							}
 						>
-							<Link className="nav-link" to="/timers">
-								Timers
-								<span className="badge badge-light">{structureCount}</span>
-							</Link>
+							<Link className="nav-link" to="/timers">Timers <span className="badge badge-light">{structureCount}</span></Link>
 						</span>
 						<a className="nav-link disabled" href="/">
 							Dscan
