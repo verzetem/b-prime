@@ -11,11 +11,11 @@ const Home = () => {
 					<strong
 						style={{ borderBottom: "3px solid #85B9EE", color: "#85B9EE" }}
 					>
-						Boredom Prime
+						&nbsp;Boredom Prime
 					</strong>
 					, a web app that converts <strong>time zones</strong> for
 					reinforcement timers on structures within the game of
-					<strong>EVE Online</strong>.
+					<strong>&nbsp;EVE Online</strong>.
 				</p>
 				<p>
 					This web app has potential to become more than just a structure timer
@@ -24,12 +24,12 @@ const Home = () => {
 				</p>
 				<br />
 				<p>
-					Please, send any suggestions (
+					Please, send any suggestions (&nbsp;
 					<strong style={{ color: "orange" }}>and especially bugs</strong>) to
 					<strong
 						style={{ borderBottom: "3px solid #85B9EE", color: "#85B9EE" }}
 					>
-						Rocar Evaal
+						&nbsp;Rocar Evaal
 					</strong>
 				</p>
 				<p style={{ color: "red" }}>
