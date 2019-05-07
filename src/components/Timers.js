@@ -110,29 +110,6 @@ const TimersMain = ({
 							>
 								<table className="table table-hover table-dark" style={{ cellspacing: "0 !important", cellpadding: "1 !important" }}>
 									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
-									{mappedStructureInfo}
 								</table>
 							</div>
 						</td>

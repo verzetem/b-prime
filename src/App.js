@@ -43,7 +43,7 @@ class App extends Component {
   }
 
   fetchTimers = () => {
-    fetch("http://192.168.1.7:3130/timers/")
+    fetch("http://localhost:3130/timers/")
       .then(res => res.json())
       .then(timeData => {
         this.setState({ structureInfo: timeData.timers })
@@ -234,7 +234,7 @@ class App extends Component {
     let mst = this.mstConversion()
     let cst = this.cstConversion()
     let est = this.estConversion()
-    fetch("http://192.168.1.7:3130/timers/", {
+    fetch("http://localhost:3130/timers/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -263,7 +263,9 @@ class App extends Component {
             est: est
           })
         })
-      })
+      }).then(
+          this.notificationActive()
+        )
       .catch(error => {
         swal(
         "Error",
@@ -272,7 +274,6 @@ class App extends Component {
         )
       })
     this.resetInput()
-    this.notificationActive()
   }
 
   deleteTimer = (event, timerId) => {
@@ -280,7 +281,7 @@ class App extends Component {
     let strucInfo = this.state.structureInfo
     strucInfo.map(timer => {
       if (timer.id === timerId) {
-        return fetch("http://192.168.1.7:3130/timers/" + timerId, {
+        return fetch("http://localhost:3130/timers/" + timerId, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json"
