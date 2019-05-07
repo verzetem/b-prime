@@ -6,11 +6,10 @@ import './App.scss';
 
 import Home from './components/Home'
 import Nav from './components/Nav'
-import Timers from './components/Timers'
+import TimersMain from './components/TimersMain'
 import NotFound from './components/NotFound'
 import TzModal from './components/TzModal'
-
-
+import InfoTile from './components/InfoTile'
 
 class App extends Component {
 	state = {
@@ -38,7 +37,7 @@ class App extends Component {
 
 componentDidMount() {
   // http://localhost:3130/timers/
-  // https://powerful-beyond-25222.herokuapp.com/timers
+  // https://powerful-beyond-25222.herokuapp.com/timers/
   this.fetchTimers()
 }
 
@@ -185,8 +184,6 @@ onSubmit = (e) => {
   let mst = this.mstConversion()
   let cst = this.cstConversion()
   let est = this.estConversion()
-  // http://localhost:3130/timers
-  // https://powerful-beyond-25222.herokuapp.com/timers
   fetch("http://localhost:3130/timers/", {
     method: "POST",
     headers: {
@@ -328,7 +325,7 @@ render() {
 					<Switch>
 						<Route path="/" exact component={ Home } />
 						<Route path="/timers" render={ (props) => 
-							<Timers
+							<TimersMain
 								structureInfo={ this.state.structureInfo }
                 newStructure={ this.state.newStructure } 
                 onSubmit={ this.onSubmit }
@@ -346,9 +343,10 @@ render() {
                 deleteTimer={ this.deleteTimer } /> } />
 						<Route component={ NotFound } />
 					</Switch>
+					<Route path="/" render={ (props) => <InfoTile /> } />
 				</div>
-				{ this.notifMsgGreen() }
-        { this.notifMsgRed() }
+				{/*{ this.notifMsgGreen() }*/}
+        {/*{ this.notifMsgRed() }*/}
         <TzModal
           timerPST={ this.state.modalInfo.pst }
           timerMST={ this.state.modalInfo.mst }
