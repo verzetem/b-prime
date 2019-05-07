@@ -42,7 +42,7 @@ class App extends Component {
   }
 
   fetchTimers = () => {
-    fetch("https://powerful-beyond-25222.herokuapp.com/timers/")
+    fetch("http://192.168.1.7:3130/timers/")
       .then(res => res.json())
       .then(timeData => {
         this.setState({ structureInfo: timeData.timers });
@@ -233,7 +233,7 @@ class App extends Component {
     let mst = this.mstConversion();
     let cst = this.cstConversion();
     let est = this.estConversion();
-    fetch("https://powerful-beyond-25222.herokuapp.com/timers/", {
+    fetch("http://192.168.1.7:3130/timers/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -268,12 +268,12 @@ class App extends Component {
     this.notificationActive();
   };
 
-  deleteTimer = (e, timerId) => {
-    e.preventDefault();
+  deleteTimer = (event, timerId) => {
+    event.preventDefault();
     let strucInfo = this.state.structureInfo;
     strucInfo.map(timer => {
       if (timer.id === timerId) {
-        return fetch("https://powerful-beyond-25222.herokuapp.com/timers/" + timerId, {
+        return fetch("http://192.168.1.7:3130/timers/" + timerId, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json"
@@ -289,6 +289,24 @@ class App extends Component {
     });
     this.notificationActiveRed();
   };
+
+
+  deleteWarning = (event, timerId) => {
+    return swal({
+      dangerMode: "true",
+      title: "Warning",
+      text: "Are you sure you want to delete this timer?",
+      icon: "warning",
+      buttons: ["Cancel", "Delete"]
+    })
+    .then(value => {
+      if (!value) {
+        return null
+      } else {
+        this.deleteTimer(event, timerId)
+      }
+    })
+  }
 
   resetInput = e => {
     this.setState({
@@ -369,6 +387,7 @@ class App extends Component {
     );
   };
 
+
   render() {
     return (
       <Router>
@@ -400,7 +419,7 @@ class App extends Component {
                     onOpenModal={this.onOpenModal}
                     onCloseModal={this.onCloseModal}
                     notification={this.state.notification}
-                    deleteTimer={this.deleteTimer}
+                    deleteTimer={this.deleteWarning}
                   />
                 )}
               />

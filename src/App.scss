@@ -128,14 +128,18 @@ input {
   font-size: 0.9em !important;
 }
 
-table {
-  font-size: 0.9em;
-}
-
 thead, tbody, th, table {
   border: thin;
   border-top: hidden;
   border-radius: 5px;
+}
+
+table {
+  overflow-y: scroll;
+  font-size: 0.9em;
+  th {
+    border-radius: 5px 5px 0 0;
+  }
 }
 
 .table-scrollable {
@@ -266,13 +270,9 @@ button.btn {
   display: none; 
 }
 
-table {
-  overflow-y: scroll;
-  border-radius: 5px;
-  th {
-    border-radius: 5px 5px 0 0;
-  }
-}
+// .swal-button--confirm {
+//   background-color: #DC3545;
+// }
 
 ///////////////////////////////////////// bouncing down arrow ///////////
 a { color: white; text-decoration: none; }
