@@ -11,7 +11,9 @@ const AddTimer = ({
 	daysListen,
 	hoursListen,
 	minutesListen,
-	secondsListen
+	secondsListen,
+	notifMsgGreen,
+	notifMsgRed
 }) => {
 	return (
 		<div className="home add-timer">
@@ -79,6 +81,9 @@ const AddTimer = ({
 			>
 				Reset
 			</button>
+			{notifMsgGreen}
+			{notifMsgRed}
+
 		</div>
 	);
 };

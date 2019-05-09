@@ -263,9 +263,7 @@ class App extends Component {
             est: est
           })
         })
-      }).then(
-          this.notificationActive()
-        )
+      })
       .catch(error => {
         swal(
         "Error",
@@ -274,6 +272,7 @@ class App extends Component {
         )
       })
     this.resetInput()
+    this.notificationActive()
   }
 
   deleteTimer = (event, timerId) => {

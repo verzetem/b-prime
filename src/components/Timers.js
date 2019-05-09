@@ -62,7 +62,7 @@ const TimersMain = ({
 				<h1>Timers</h1>
 				<div
 					className="card text-white bg-dark"
-					style={{ maxWidth: "18rem" }}
+					style={{ width: "20rem" }}
 				>
 					<p className="card-text">
 						Local: {now} <br /> EVE: {gmt}

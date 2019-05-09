@@ -184,9 +184,8 @@ select {
   left: 0;
   right: 0;
   bottom: 0;
-  // margin-right: auto !important;
-  // margin-left: auto !important;
   margin: 0;
+  padding: 0;
   text-align: center;
   width: 100%;
   transition: all 0.3s;
@@ -215,18 +214,26 @@ button.btn {
 }
 
 .badge-info {
-  font-size: 0.9em;
+  font-size: 1.2em;
+  font-weight: normal;
+  border: 1px solid rgba(0,0,0,0.7);
+  transition: all 0.3s;
   &:hover {
     background-color: #12616E;
     cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.4);
   }
 }
 
 .badge-danger {
-  font-size: 0.9em;
+  font-size: 1.2em;
+  font-weight: normal;
+  border: 1px solid rgba(0,0,0,0.7);
+  transition: all 0.3s;
   &:hover {
     background-color: #76202A;
     cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.4);
   }
 }
 
