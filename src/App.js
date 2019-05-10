@@ -406,6 +406,10 @@ class App extends Component {
     }
   }
 
+  fuckMe = () => {
+  	console.log(this.state.structureInfo[0])
+  }
+
 
   render() {
     return (
@@ -448,6 +452,7 @@ class App extends Component {
           </div>
           { this.notifMsgGreen() }
           { this.notifMsgRed() }
+          <button onClick={this.fuckMe}>CLICK THIS!!!</button>
           <TzModal
             timerPST={this.state.modalInfo.pst}
             timerMST={this.state.modalInfo.mst}

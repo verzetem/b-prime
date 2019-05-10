@@ -1,5 +1,6 @@
 import React from "react";
 import { DateTime } from "luxon";
+import NewTable from "./NewTable"
 
 import AddTimer from "./AddTimer";
 
@@ -7,7 +8,6 @@ const TimersMain = ({
 	structureInfo,
 	deleteTimer,
 	notification,
-	modalOpen,
 	onOpenModal,
 	onCloseModal,
 	newStructure,
@@ -82,40 +82,7 @@ const TimersMain = ({
 					</div>
 				</div>
 				<br />
-				<table
-					style={{
-						width: "100%"
-					}}
-				>
-					<tr>
-						<td>
-							<table className="table table-hover table-dark">
-								<thead>
-									<tr>
-										{/*<th scope="col">Timer ID</th> need timer ids? */}
-										<th scope="col">Structure Name</th>
-										<th scope="col">Location</th>
-										<th scope="col">Comes Out</th>
-										<th scope="col">TZ Card</th>
-										<th scope="col"> </th>
-									</tr>
-								</thead>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div
-								className="table-scrollable"
-							>
-								<table className="table table-hover table-dark" style={{ cellspacing: "0 !important", cellpadding: "1 !important" }}>
-									{mappedStructureInfo}
-								</table>
-							</div>
-						</td>
-					</tr>
-				</table>
-
+				<NewTable structureInfo={structureInfo} onOpenModal={onOpenModal} deleteTimer={deleteTimer} />
 				<AddTimer
 					onSubmit={onSubmit}
 					newStructure={newStructure}
@@ -127,6 +94,8 @@ const TimersMain = ({
 					secondsListen={secondsListen}
 					locationListen={locationListen}
 				/>
+
+
 			</div>
 		);
 	} else {
@@ -135,7 +104,7 @@ const TimersMain = ({
 				<h1>Timers</h1>
 				<div
 					className="card text-white bg-dark mb-5"
-					style={{ maxWidth: "18rem" }}
+					style={{ maxWidth: "20rem" }}
 				>
 					<p className="card-text">
 						Local: {now} <br /> EVE: {gmt}
