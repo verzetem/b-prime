@@ -11,13 +11,16 @@ const NewTable = ({ structureInfo, onOpenModal, deleteTimer }) => {
     Header: 'Location',
     accessor: 'location' // String-based value accessors!
   }, {
+    filterable: false,
     Header: 'Comes Out',
     accessor: 'time' // String-based value accessors!
   }, {
+  	filterable: false,
     Header: 'TZ Card',
     accessor: 'null', // String-based value accessors!
     Cell: props => <span className="badge badge-info" onClick={e => onOpenModal(e, props.original.id)}>Open</span>
   }, {
+  	filterable: false,
     Header: ' ',
     accessor: 'null', // String-based value accessors!
     Cell: props => <span className="badge badge-danger" onClick={e => deleteTimer(e, props.original.id)}>Delete</span>
@@ -29,8 +32,9 @@ const NewTable = ({ structureInfo, onOpenModal, deleteTimer }) => {
 				className="-striped -highlight"
 		    data={structureInfo}
 		    columns={columns}
-		    pageSizeOptions={[5, 10, 20]}
+		    pageSizeOptions={[5, 10]}
   			defaultPageSize={5}
+  			filterable={true}
 		  />
 		</div>
 	);
