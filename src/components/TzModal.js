@@ -1,6 +1,5 @@
 import React from "react"
 import Modal from "react-responsive-modal"
-import swal from "@sweetalert/with-react"
 
 const TzModal = ({
 	onCloseModal,
@@ -66,10 +65,13 @@ const TzModal = ({
 				<h4 className="tz-card">{timerMST}</h4>
 				<h4 className="tz-card">{timerCST}</h4>
 				<h4 className="tz-card">{timerEST}</h4>
+				<h4 className="tz-card">{timerAST}</h4>
+				<h4 className="tz-card">{timerHST}</h4>
+				<h4 className="tz-card">{timerAKST}</h4>
 			</center>
 		</Modal>
 		)
-	} else {
+	} else if (regionAU === false && regionEU === false && regionNA === false) {
 		return (
 			<Modal open={modalOpen} onClose={onCloseModal} center>
 			<h2 className="tz-card">Local TZ Conversions</h2>

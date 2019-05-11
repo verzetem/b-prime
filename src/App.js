@@ -644,7 +644,8 @@ class App extends Component {
       case "na": 
         this.setState({ au: false, eu: false, na: true });
         break;
-      default: console.log("default");
+      default: 
+        this.setState({ au: false, eu: false, na: false })
         break;
     }
   }
