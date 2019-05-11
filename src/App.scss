@@ -22,6 +22,16 @@ body {
   margin-bottom: 1%;
 }
 
+.rt-td {
+  font-size: 0.9em;
+}
+
+.ReactTable {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 5px;
+  background-color: rgba(100,125,150,0.2);
+}
+
 div.nav {
   flex-direction: column;
   background-color: #2C2D33;
@@ -214,7 +224,7 @@ button.btn {
 }
 
 .badge-info {
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: normal;
   border: 1px solid rgba(0,0,0,0.7);
   transition: all 0.3s;
@@ -226,7 +236,7 @@ button.btn {
 }
 
 .badge-danger {
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: normal;
   border: 1px solid rgba(0,0,0,0.7);
   transition: all 0.3s;

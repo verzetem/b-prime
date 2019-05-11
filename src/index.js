@@ -5,6 +5,7 @@ import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 import '../node_modules/jquery/dist/jquery.slim.min.js';
 import '../node_modules/popper.js/dist/popper.min.js';
 import './index.scss';
+import 'react-table/react-table.css'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

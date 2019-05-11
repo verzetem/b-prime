@@ -20,30 +20,30 @@ const Updates = () => {
 					style={{ height: "11em" }}
 				>
 					<div className="card-body update-card">
+					<h5 className="card-title">May 7</h5>
 						<p className="card-text">
-							<h5 class="card-title">May 7</h5>
 							- Locked first timer row/made timer table scrollable
 							<br/>
 							- Added confirm delete popup
 						</p>
 						<hr/>
+						<h5 className="card-title">May 6</h5>
 						<p className="card-text">
-							<h5 class="card-title">May 6</h5>
 							- Dev build Deployed 🎉🎉🎉🎉🎉
 						</p>
 						<hr/>
+						<h5 className="card-title">May 5</h5>
 						<p className="card-text">
-							<h5 class="card-title">May 5</h5>
 							- Cleaned up CSS, ready to deploy
 						</p>
 						<hr/>
+						<h5 className="card-title">May 3</h5>
 						<p className="card-text">
-							<h5 class="card-title">May 3</h5>
 							- Added local and EVE times, cleaned up CSS
 						</p>
 						<hr/>
+						<h5 className="card-title">Apr 30</h5>
 						<p className="card-text">
-							<h5 class="card-title">Apr 30</h5>
 							- MVP complete
 						</p>
 					</div>
