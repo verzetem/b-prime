@@ -20,7 +20,17 @@ const Updates = () => {
 					style={{ height: "11em" }}
 				>
 					<div className="card-body update-card">
-					<h5 className="card-title">May 7</h5>
+						<h5 className="card-title">May 10</h5>
+						<p className="card-text">
+							- Added loading indicators for fetch request
+						</p>
+						<hr/>
+						<h5 className="card-title">May 9</h5>
+						<p className="card-text">
+							- Added new table that is sortable, filterable, and has resizable columns
+						</p>
+						<hr/>
+						<h5 className="card-title">May 7</h5>
 						<p className="card-text">
 							- Locked first timer row/made timer table scrollable
 							<br/>
@@ -29,7 +39,7 @@ const Updates = () => {
 						<hr/>
 						<h5 className="card-title">May 6</h5>
 						<p className="card-text">
-							- Dev build Deployed 🎉🎉🎉🎉🎉
+							- Dev build Deployed <span role="img" aria-label="emoji">🎉🎉🎉🎉🎉</span>
 						</p>
 						<hr/>
 						<h5 className="card-title">May 5</h5>

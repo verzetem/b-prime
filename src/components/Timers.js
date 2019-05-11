@@ -1,8 +1,10 @@
-import React from "react";
-import { DateTime } from "luxon";
-import NewTable from "./NewTable"
+import React from "react"
+import { DateTime } from "luxon"
+import Loader from 'react-loader-spinner'
 
-import AddTimer from "./AddTimer";
+import NewTable from "./NewTable"
+import AddTimer from "./AddTimer"
+
 
 const TimersMain = ({
 	structureInfo,
@@ -18,12 +20,15 @@ const TimersMain = ({
 	hoursListen,
 	minutesListen,
 	secondsListen,
-	locationListen
+	locationListen,
+	loading
 }) => {
 	const now = DateTime.local().toFormat("DD TTT");
 	const gmt = DateTime.local()
 		.setZone("Iceland")
 		.toFormat("DD TTT");
+	const loaderSpinner = <Loader type="Triangle" color="#FFF" height="200"	width="200" />
+	let conditionalSpinner = loading ? loaderSpinner : <h4>No timers available. Please add a timer using the form below.</h4>
 
 	if (structureInfo.length !== 0) {
 		return (
@@ -92,7 +97,8 @@ const TimersMain = ({
 						</select>
 					</div>
 				</div>
-				<h4>No timers available. Please add a timer using the form below.</h4>
+				{conditionalSpinner}
+
 				<AddTimer
 					onSubmit={onSubmit}
 					newStructure={newStructure}

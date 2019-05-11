@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import { DateTime } from "luxon"
 import swal from "@sweetalert/with-react"
+import Loader from 'react-loader-spinner'
 import "./App.scss"
 
 import Home from "./components/Home"
@@ -32,22 +33,27 @@ class App extends Component {
       est: ""
     },
     notification: false,
-    notificationRed: false
+    notificationRed: false,
+    loading: false
   }
 
   componentDidMount() {
     // http://localhost:3130/timers/
     // https://powerful-beyond-25222.herokuapp.com/timers/
     // http://192.168.1.7:3130/timers/
-    this.fetchTimers()
+    this.setState({ loading: true})
+    setTimeout(() => this.fetchTimers(), 1000)
   }
 
   fetchTimers = () => {
-    fetch("http://localhost:3130/timers/")
+    fetch("https://powerful-beyond-25222.herokuapp.com/timers/")
       .then(res => res.json())
       .then(timeData => {
-        this.setState({ structureInfo: timeData.timers })
-      })
+        this.setState({ structureInfo: timeData.timers });
+        this.setState({ loading: false })
+      }).catch(error => {
+        swal("Error", `${error.message}`, "error");
+      }).then(() => this.setState({ loading: false }) )
   }
 
   // functions
@@ -234,7 +240,7 @@ class App extends Component {
     let mst = this.mstConversion()
     let cst = this.cstConversion()
     let est = this.estConversion()
-    fetch("http://localhost:3130/timers/", {
+    fetch("https://powerful-beyond-25222.herokuapp.com/timers/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -278,7 +284,7 @@ class App extends Component {
     let strucInfo = this.state.structureInfo
     strucInfo.map(timer => {
       if (timer.id === timerId) {
-        return fetch("http://localhost:3130/timers/" + timerId, {
+        return fetch("https://powerful-beyond-25222.herokuapp.com/timers/" + timerId, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json"
@@ -302,7 +308,6 @@ class App extends Component {
       } else return null
     })
   }
-
 
   deleteWarning = (event, timerId) => {
     return swal({
@@ -404,6 +409,22 @@ class App extends Component {
     }
   }
 
+  loaderSpinner = () => {
+    if (this.state.loading === false) {
+      return null
+    } else {
+      return (
+      <Loader 
+         type="Triangle"
+         color="#FFF"
+         height="100"  
+         width="100"
+      />
+      )
+    }
+
+  }
+
   render() {
     return (
       <Router>
@@ -436,6 +457,7 @@ class App extends Component {
                     onCloseModal={this.onCloseModal}
                     notification={this.state.notification}
                     deleteTimer={this.deleteWarning}
+                    loading={this.state.loading}
                   />
                 )}
               />
