@@ -46,7 +46,7 @@ class App extends Component {
   }
 
   fetchTimers = () => {
-    fetch("https://powerful-beyond-25222.herokuapp.com/timers/")
+    fetch("http://localhost:3130/timers/")
       .then(res => res.json())
       .then(timeData => {
         this.setState({ structureInfo: timeData.timers });
@@ -56,10 +56,7 @@ class App extends Component {
       }).then(() => this.setState({ loading: false }) )
   }
 
-  // functions
-
-  // webhook test
-
+  ////////// webhook test //////////
   // webhook = (e) => {
   //   // e.preventDefault()
   //   let url = "https://discordapp.com/api/webhooks/571462934362980357/N2k1543TcMdwA-KGlJTsaZqGXEE_jQeVWGJgL2AzLa_8mI2iNH7GPvlAUAMZjo4fZhVr"
@@ -240,7 +237,7 @@ class App extends Component {
     let mst = this.mstConversion()
     let cst = this.cstConversion()
     let est = this.estConversion()
-    fetch("https://powerful-beyond-25222.herokuapp.com/timers/", {
+    fetch("http://localhost:3130/timers/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -284,7 +281,7 @@ class App extends Component {
     let strucInfo = this.state.structureInfo
     strucInfo.map(timer => {
       if (timer.id === timerId) {
-        return fetch("https://powerful-beyond-25222.herokuapp.com/timers/" + timerId, {
+        return fetch("http://localhost:3130/timers/" + timerId, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json"
