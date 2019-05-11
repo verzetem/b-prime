@@ -55,6 +55,7 @@ class App extends Component {
     // http://localhost:3130/timers/
     // https://powerful-beyond-25222.herokuapp.com/timers/
     // http://192.168.1.7:3130/timers/
+    // https://frozen-garden-66478.herokuapp.com/timers/ (NEW DB)
     this.setState({ loading: true})
     setTimeout(() => this.fetchTimers(), 1000)
   }
@@ -702,7 +703,7 @@ class App extends Component {
             timerCST={this.state.modalInfo.cst}
             timerEST={this.state.modalInfo.est}
             timerAST={this.state.modalInfo.ast}
-            timerHST={this.state.modalInfo.HST}
+            timerHST={this.state.modalInfo.hst}
             timerAKST={this.state.modalInfo.akst}
             timerBST={this.state.modalInfo.bst}
             timerWET={this.state.modalInfo.wet}
