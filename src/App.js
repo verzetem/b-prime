@@ -48,7 +48,8 @@ class App extends Component {
     na: false,
     notification: false,
     notificationRed: false,
-    loading: false
+    loading: false,
+    interval: false
   }
 
   componentDidMount() {
@@ -58,6 +59,7 @@ class App extends Component {
     // https://frozen-garden-66478.herokuapp.com/timers/ (NEW DB)
     this.setState({ loading: true})
     setTimeout(() => this.fetchTimers(), 1000)
+    setInterval(() => { this.setState({ interval: !this.state.interval }) }, 1000) // temp solution
   }
 
   fetchTimers = () => {
