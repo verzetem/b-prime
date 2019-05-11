@@ -248,8 +248,7 @@ class App extends Component {
         cst: cst,
         est: est
       })
-    })
-      .then(response => response.json())
+    }).then(response => response.json())
       .then(response => {
         this.setState({
           structureInfo: strucInfo.concat({
@@ -263,17 +262,16 @@ class App extends Component {
             est: est
           })
         })
-      })
-      .catch(error => {
+      }).catch(error => {
         swal(
-        "Error",
-        `${error.message}`,
-        "error"
-        )
+          "Error",
+          `${error.message}`,
+          "error"
+          )
       })
-    this.resetInput()
-    this.notificationActive()
-  }
+      this.resetInput()
+      this.notificationActive()
+    }
 
   deleteTimer = (event, timerId) => {
     event.preventDefault()

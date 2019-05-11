@@ -25,37 +25,6 @@ const TimersMain = ({
 		.setZone("Iceland")
 		.toFormat("DD TTT");
 
-	let mappedStructureInfo = structureInfo.map((timer, i) => {
-		return (
-			<React.Fragment key={i}>
-				<tbody>
-					<tr>
-						{/*<th scope="row">{ timer.id }</th>*/}
-						<td>{timer.name}</td>
-						<td>{timer.location}</td>
-						<td>{timer.time}</td>
-						<td>
-							<span
-								className="badge badge-info"
-								onClick={e => onOpenModal(e, timer.id)}
-							>
-								Open
-							</span>
-						</td>
-						<td>
-							<span
-								className="badge badge-danger"
-								onClick={e => deleteTimer(e, timer.id)}
-							>
-								Delete
-							</span>
-						</td>
-					</tr>
-				</tbody>
-			</React.Fragment>
-		);
-	});
-
 	if (structureInfo.length !== 0) {
 		return (
 			<div className="col-md-7 home">
