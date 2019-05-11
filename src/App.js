@@ -30,8 +30,22 @@ class App extends Component {
       pst: "",
       mst: "",
       cst: "",
-      est: ""
+      est: "",
+      ast: "",
+      hst: "",
+      akst: "",
+      bst: "",
+      wet: "",
+      cet: "",
+      eet: "",
+      msk: "",
+      aest: "",
+      acst: "",
+      awst: ""
     },
+    au: false,
+    eu: false,
+    na: false,
     notification: false,
     notificationRed: false,
     loading: false
@@ -213,6 +227,160 @@ class App extends Component {
     return newTimer
   }
 
+  astConversion = () => {
+    let state = this.state.newStructure.newTime
+    let newTimer = DateTime.local()
+      .setZone("America/Glace_Bay")
+      .plus({
+        days: state.days,
+        hours: state.hours,
+        minutes: state.minutes,
+        seconds: state.seconds
+      })
+      .toFormat("DD TTT")
+    return newTimer
+  }
+
+  hstConversion = () => {
+    let state = this.state.newStructure.newTime
+    let newTimer = DateTime.local()
+      .setZone("Pacific/Honolulu")
+      .plus({
+        days: state.days,
+        hours: state.hours,
+        minutes: state.minutes,
+        seconds: state.seconds
+      })
+      .toFormat("DD TTT")
+    return newTimer
+  }
+
+  akstConversion = () => {
+    let state = this.state.newStructure.newTime
+    let newTimer = DateTime.local()
+      .setZone("America/Anchorage")
+      .plus({
+        days: state.days,
+        hours: state.hours,
+        minutes: state.minutes,
+        seconds: state.seconds
+      })
+      .toFormat("DD TTT")
+    return newTimer
+  }
+
+  bstConversion = () => {
+    let state = this.state.newStructure.newTime
+    let newTimer = DateTime.local()
+      .setZone("Europe/London")
+      .plus({
+        days: state.days,
+        hours: state.hours,
+        minutes: state.minutes,
+        seconds: state.seconds
+      })
+      .toFormat("DD TTT")
+    return newTimer
+  }
+
+  wetConversion = () => {
+    let state = this.state.newStructure.newTime
+    let newTimer = DateTime.local()
+      .setZone("Atlantic/Canary")
+      .plus({
+        days: state.days,
+        hours: state.hours,
+        minutes: state.minutes,
+        seconds: state.seconds
+      })
+      .toFormat("DD TTT")
+    return newTimer
+  }
+
+  cetConversion = () => {
+    let state = this.state.newStructure.newTime
+    let newTimer = DateTime.local()
+      .setZone("Europe/Brussels")
+      .plus({
+        days: state.days,
+        hours: state.hours,
+        minutes: state.minutes,
+        seconds: state.seconds
+      })
+      .toFormat("DD TTT")
+    return newTimer
+  }
+
+  eetConversion = () => {
+    let state = this.state.newStructure.newTime
+    let newTimer = DateTime.local()
+      .setZone("Europe/Bucharest")
+      .plus({
+        days: state.days,
+        hours: state.hours,
+        minutes: state.minutes,
+        seconds: state.seconds
+      })
+      .toFormat("DD TTT")
+    return newTimer
+  }
+
+  mskConversion = () => {
+    let state = this.state.newStructure.newTime
+    let newTimer = DateTime.local()
+      .setZone("Europe/Moscow")
+      .plus({
+        days: state.days,
+        hours: state.hours,
+        minutes: state.minutes,
+        seconds: state.seconds
+      })
+      .toFormat("DD TTT")
+    return newTimer
+  }
+
+  aestConversion = () => {
+    let state = this.state.newStructure.newTime
+    let newTimer = DateTime.local()
+      .setZone("Australia/Melbourne")
+      .plus({
+        days: state.days,
+        hours: state.hours,
+        minutes: state.minutes,
+        seconds: state.seconds
+      })
+      .toFormat("DD TTT")
+    return newTimer
+  }
+
+  acstConversion = () => {
+    let state = this.state.newStructure.newTime
+    let newTimer = DateTime.local()
+      .setZone("Australia/Darwin")
+      .plus({
+        days: state.days,
+        hours: state.hours,
+        minutes: state.minutes,
+        seconds: state.seconds
+      })
+      .toFormat("DD TTT")
+    return newTimer
+  }
+
+  awstConversion = () => {
+    let state = this.state.newStructure.newTime
+    let newTimer = DateTime.local()
+      .setZone("Australia/Perth")
+      .plus({
+        days: state.days,
+        hours: state.hours,
+        minutes: state.minutes,
+        seconds: state.seconds
+      })
+      .toFormat("DD TTT")
+    return newTimer
+  }
+
   onSubmit = e => {
     e.preventDefault()
     let strucInfo = this.state.structureInfo
@@ -232,11 +400,22 @@ class App extends Component {
         "error"
       )
     }
-    let time = this.timeConversion()
-    let pst = this.pstConversion()
-    let mst = this.mstConversion()
-    let cst = this.cstConversion()
-    let est = this.estConversion()
+    const time = this.timeConversion()
+    const pst = this.pstConversion()
+    const mst = this.mstConversion()
+    const cst = this.cstConversion()
+    const est = this.estConversion()
+    const ast = this.astConversion()
+    const hst = this.hstConversion()
+    const akst = this.akstConversion()
+    const bst = this.bstConversion()
+    const wet = this.wetConversion()
+    const cet = this.cetConversion()
+    const eet = this.eetConversion()
+    const msk = this.mskConversion()
+    const aest = this.aestConversion()
+    const acst = this.acstConversion()
+    const awst = this.awstConversion()
     fetch("http://localhost:3130/timers/", {
       method: "POST",
       headers: {
@@ -249,7 +428,18 @@ class App extends Component {
         pst: pst,
         mst: mst,
         cst: cst,
-        est: est
+        est: est,
+        ast: ast,
+        hst: hst,
+        akst: akst,
+        bst: bst,
+        wet: wet,
+        cet: cet,
+        eet: eet,
+        msk: msk,
+        aest: aest,
+        acst: acst,
+        awst: awst
       })
     }).then(response => response.json())
       .then(response => {
@@ -262,7 +452,18 @@ class App extends Component {
             pst: pst,
             mst: mst,
             cst: cst,
-            est: est
+            est: est,
+            ast: ast,
+            hst: hst,
+            akst: akst,
+            bst: bst,
+            wet: wet,
+            cet: cet,
+            eet: eet,
+            msk: msk,
+            aest: aest,
+            acst: acst,
+            awst: awst
           })
         })
       }).catch(error => {
@@ -348,7 +549,18 @@ class App extends Component {
             pst: timer.pst,
             mst: timer.mst,
             cst: timer.cst,
-            est: timer.est
+            est: timer.est,
+            ast: timer.ast,
+            hst: timer.hst,
+            akst: timer.akst,
+            bst: timer.bst,
+            wet: timer.wet,
+            cet: timer.cet,
+            eet: timer.eet,
+            msk: timer.msk,
+            aest: timer.aest,
+            acst: timer.acst,
+            awst: timer.awst
           }
         })
       } else return null
@@ -419,7 +631,22 @@ class App extends Component {
       />
       )
     }
+  }
 
+  onRegionChange = (e) => {
+    switch (e.target.value) {
+      case "au": 
+        this.setState({ au: true, eu: false, na: false });
+        break;
+      case "eu": 
+        this.setState({ au: false, eu: true, na: false });
+        break;
+      case "na": 
+        this.setState({ au: false, eu: false, na: true });
+        break;
+      default: console.log("default");
+        break;
+    }
   }
 
   render() {
@@ -455,6 +682,7 @@ class App extends Component {
                     notification={this.state.notification}
                     deleteTimer={this.deleteWarning}
                     loading={this.state.loading}
+                    onRegionChange={this.onRegionChange}
                   />
                 )}
               />
@@ -465,10 +693,24 @@ class App extends Component {
           { this.notifMsgGreen() }
           { this.notifMsgRed() }
           <TzModal
+            regionAU={this.state.au}
+            regionEU={this.state.eu}
+            regionNA={this.state.na}
             timerPST={this.state.modalInfo.pst}
             timerMST={this.state.modalInfo.mst}
             timerCST={this.state.modalInfo.cst}
             timerEST={this.state.modalInfo.est}
+            timerAST={this.state.modalInfo.ast}
+            timerHST={this.state.modalInfo.HST}
+            timerAKST={this.state.modalInfo.akst}
+            timerBST={this.state.modalInfo.bst}
+            timerWET={this.state.modalInfo.wet}
+            timerCET={this.state.modalInfo.cet}
+            timerEET={this.state.modalInfo.eet}
+            timerMSK={this.state.modalInfo.msk}
+            timerAEST={this.state.modalInfo.aest}
+            timerACST={this.state.modalInfo.acst}
+            timerAWST={this.state.modalInfo.awst}
             modalOpen={this.state.modalOpen}
             onCloseModal={this.onCloseModal}
           />

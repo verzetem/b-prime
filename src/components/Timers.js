@@ -21,7 +21,8 @@ const TimersMain = ({
 	minutesListen,
 	secondsListen,
 	locationListen,
-	loading
+	loading,
+	onRegionChange
 }) => {
 	const now = DateTime.local().toFormat("DD TTT");
 	const gmt = DateTime.local()
@@ -29,6 +30,7 @@ const TimersMain = ({
 		.toFormat("DD TTT");
 	const loaderSpinner = <Loader type="Triangle" color="#FFF" height="200"	width="200" />
 	let conditionalSpinner = loading ? loaderSpinner : <h4>No timers available. Please add a timer using the form below.</h4>
+	// let regionSelect = 
 
 	if (structureInfo.length !== 0) {
 		return (
@@ -47,11 +49,11 @@ const TimersMain = ({
 								Region
 							</label>
 						</div>
-						<select className="custom-select" id="regionSelect">
-							<option defaultValue>!Work in progress!</option>
-							<option value="1">Australia</option>
-							<option value="2">Europe</option>
-							<option value="3">U.S. / Canada</option>
+						<select onChange={onRegionChange} className="custom-select" id="regionSelect">
+							<option defaultValue>Choose...</option>
+							<option value="au">Australia</option>
+							<option value="eu">Europe</option>
+							<option value="na">U.S. / Canada</option>
 						</select>
 					</div>
 				</div>
@@ -68,8 +70,6 @@ const TimersMain = ({
 					secondsListen={secondsListen}
 					locationListen={locationListen}
 				/>
-
-
 			</div>
 		);
 	} else {
@@ -89,17 +89,16 @@ const TimersMain = ({
 								Region
 							</label>
 						</div>
-						<select className="custom-select" id="regionSelect">
-							<option defaultValue>!Work in progress!</option>
-							<option value="1">Australia</option>
-							<option value="2">Europe</option>
-							<option value="3">U.S. / Canada</option>
+						<select onChange={e => onRegionChange(e)} className="custom-select" id="regionSelect">
+							<option defaultValue>Choose...</option>
+							<option value="au">Australia</option>
+							<option value="eu">Europe</option>
+							<option value="na">U.S. / Canada</option>
 						</select>
 					</div>
 				</div>
 				{conditionalSpinner}
-
-				<AddTimer
+				<AddTimer 
 					onSubmit={onSubmit}
 					newStructure={newStructure}
 					resetInput={resetInput}
