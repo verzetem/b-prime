@@ -1,8 +1,10 @@
-import React from "react";
-import { DateTime } from "luxon";
-import NewTable from "./NewTable"
+import React from "react"
+import { DateTime } from "luxon"
+import Loader from 'react-loader-spinner'
 
-import AddTimer from "./AddTimer";
+import NewTable from "./NewTable"
+import AddTimer from "./AddTimer"
+
 
 const TimersMain = ({
 	structureInfo,
@@ -18,12 +20,17 @@ const TimersMain = ({
 	hoursListen,
 	minutesListen,
 	secondsListen,
-	locationListen
+	locationListen,
+	loading,
+	onRegionChange
 }) => {
 	const now = DateTime.local().toFormat("DD TTT");
 	const gmt = DateTime.local()
 		.setZone("Iceland")
 		.toFormat("DD TTT");
+	const loaderSpinner = <Loader type="Triangle" color="#FFF" height="200"	width="200" />
+	let conditionalSpinner = loading ? loaderSpinner : <h4>No timers available. Please add a timer using the form below.</h4>
+	
 
 	if (structureInfo.length !== 0) {
 		return (
@@ -42,11 +49,11 @@ const TimersMain = ({
 								Region
 							</label>
 						</div>
-						<select className="custom-select" id="regionSelect">
-							<option defaultValue>!Work in progress!</option>
-							<option value="1">Australia</option>
-							<option value="2">Europe</option>
-							<option value="3">U.S. / Canada</option>
+						<select onChange={onRegionChange} className="custom-select" id="regionSelect">
+							<option defaultValue>Choose...</option>
+							<option value="au">Australia</option>
+							<option value="eu">Europe</option>
+							<option value="na">U.S. / Canada</option>
 						</select>
 					</div>
 				</div>
@@ -63,8 +70,6 @@ const TimersMain = ({
 					secondsListen={secondsListen}
 					locationListen={locationListen}
 				/>
-
-
 			</div>
 		);
 	} else {
@@ -84,16 +89,16 @@ const TimersMain = ({
 								Region
 							</label>
 						</div>
-						<select className="custom-select" id="regionSelect">
-							<option defaultValue>!Work in progress!</option>
-							<option value="1">Australia</option>
-							<option value="2">Europe</option>
-							<option value="3">U.S. / Canada</option>
+						<select onChange={e => onRegionChange(e)} className="custom-select" id="regionSelect">
+							<option defaultValue>Choose...</option>
+							<option value="au">Australia</option>
+							<option value="eu">Europe</option>
+							<option value="na">U.S. / Canada</option>
 						</select>
 					</div>
 				</div>
-				<h4>No timers available. Please add a timer using the form below.</h4>
-				<AddTimer
+				{conditionalSpinner}
+				<AddTimer 
 					onSubmit={onSubmit}
 					newStructure={newStructure}
 					resetInput={resetInput}
