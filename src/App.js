@@ -49,7 +49,8 @@ class App extends Component {
     notification: false,
     notificationRed: false,
     loading: false,
-    interval: false
+    loading2: false,
+    interval: false //temporary
   }
 
   componentDidMount() {
