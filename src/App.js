@@ -49,7 +49,8 @@ class App extends Component {
     notification: false,
     notificationRed: false,
     loading: false,
-    interval: false
+    loading2: false,
+    interval: false //temporary
   }
 
   componentDidMount() {
@@ -686,6 +687,7 @@ class App extends Component {
                     notification={this.state.notification}
                     deleteTimer={this.deleteWarning}
                     loading={this.state.loading}
+                    loading2={this.state.loading2}
                     onRegionChange={this.onRegionChange}
                   />
                 )}

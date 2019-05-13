@@ -22,6 +22,7 @@ const TimersMain = ({
 	secondsListen,
 	locationListen,
 	loading,
+	loading2,
 	onRegionChange
 }) => {
 	const now = DateTime.local().toFormat("DD TTT");
