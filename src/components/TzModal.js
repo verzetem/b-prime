@@ -23,6 +23,7 @@ const TzModal = ({
 	timerACST,
 	timerAWST
 }) => {
+
 	if (regionAU) {
 		return (
 		<Modal open={modalOpen} onClose={onCloseModal} center>
