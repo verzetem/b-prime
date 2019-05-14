@@ -64,7 +64,7 @@ class App extends Component {
   }
 
   fetchTimers = () => {
-    fetch("https://frozen-garden-66478.herokuapp.com/timers/")
+    fetch("http://localhost:3130/timers/")
       .then(res => res.json())
       .then(timeData => {
         this.setState({ structureInfo: timeData.timers });
@@ -422,7 +422,7 @@ class App extends Component {
     const acst = this.acstConversion()
     const awst = this.awstConversion()
     setTimeout(() => {
-    fetch("https://frozen-garden-66478.herokuapp.com/timers/", {
+    fetch("http://localhost:3130/timers/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -491,7 +491,7 @@ class App extends Component {
     let strucInfo = this.state.structureInfo
     strucInfo.map(timer => {
       if (timer.id === timerId) {
-        return fetch("https://frozen-garden-66478.herokuapp.com/timers/" + timerId, {
+        return fetch("http://localhost:3130/timers/" + timerId, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json"

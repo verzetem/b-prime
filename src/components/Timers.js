@@ -66,7 +66,7 @@ const TimersMain = ({
 							<option defaultValue>Choose...</option>
 							<option value="au">Australia</option>
 							<option value="eu">Europe</option>
-							<option value="na">U.S. / Canada</option>
+							<option value="na">North America</option>
 						</select>
 					</div>
 				</div>
@@ -96,7 +96,7 @@ const TimersMain = ({
 							<option defaultValue>Choose...</option>
 							<option value="au">Australia</option>
 							<option value="eu">Europe</option>
-							<option value="na">U.S. / Canada</option>
+							<option value="na">North America</option>
 						</select>
 					</div>
 				</div>
