@@ -59,12 +59,12 @@ class App extends Component {
     // http://192.168.1.7:3130/timers/
     // https://frozen-garden-66478.herokuapp.com/timers/ (NEW DB)
     this.setState({ loading: true})
-    setTimeout(() => this.fetchTimers(), 1000)
+    this.fetchTimers()
     setInterval(() => { this.setState({ interval: !this.state.interval }) }, 1000) // temp solution
   }
 
   fetchTimers = () => {
-    fetch("http://localhost:3130/timers/")
+    fetch("https://frozen-garden-66478.herokuapp.com/timers/")
       .then(res => res.json())
       .then(timeData => {
         this.setState({ structureInfo: timeData.timers });
@@ -387,6 +387,7 @@ class App extends Component {
 
   onSubmit = e => {
     e.preventDefault()
+    this.setState({ loading2: true })
     let strucInfo = this.state.structureInfo
     let newStruc = this.state.newStructure
     let newStrucTime = newStruc.newTime
@@ -402,7 +403,7 @@ class App extends Component {
         "Error",
         "Please fill out ALL fields and submit again",
         "error"
-      )
+      ) && this.setState({ loading2: false })
     }
     const time = this.timeConversion()
     const pst = this.pstConversion()
@@ -420,7 +421,8 @@ class App extends Component {
     const aest = this.aestConversion()
     const acst = this.acstConversion()
     const awst = this.awstConversion()
-    fetch("http://localhost:3130/timers/", {
+    setTimeout(() => {
+    fetch("https://frozen-garden-66478.herokuapp.com/timers/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -469,14 +471,17 @@ class App extends Component {
             acst: acst,
             awst: awst
           })
-        })
+        });
+        this.setState({loading2: false });
       }).catch(error => {
+        this.setState({ loading2: false });
         swal(
           "Error",
           `${error.message}`,
           "error"
-          )
+          );
       })
+    }, 1000)
       this.resetInput()
       this.notificationActive()
     }
@@ -486,7 +491,7 @@ class App extends Component {
     let strucInfo = this.state.structureInfo
     strucInfo.map(timer => {
       if (timer.id === timerId) {
-        return fetch("http://localhost:3130/timers/" + timerId, {
+        return fetch("https://frozen-garden-66478.herokuapp.com/timers/" + timerId, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json"
@@ -588,11 +593,11 @@ class App extends Component {
   notifMsgGreen = () => {
     let notification = this.state.notification
     let notifDefault = "alert alert-success"
-    let notifShow = !notification ? "" : " show"
-    let notifFade = notification ? "" : " fade"
+    let notifShow = " show"
+    let notifFade = " fade"
     if (notification) {
       return (
-      <div className={notifDefault + notifShow + notifFade} role="alert">
+      <div className={notifDefault + notifShow + notifFade } role="alert">
         Timer Added!
       </div>
       )
@@ -655,6 +660,7 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <Router>
         <div className="countainer-fluid">
@@ -662,7 +668,7 @@ class App extends Component {
             <Route
               path="/"
               render={props => (
-                <Nav structureCount={this.state.structureInfo.length} />
+                <Nav structureCount={this.state.structureInfo.length} loading={this.state.loading} />
               )}
             />
             <Switch>

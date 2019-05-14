@@ -30,7 +30,7 @@ const TimersMain = ({
 		.setZone("Iceland")
 		.toFormat("DD TTT");
 	const loaderSpinner = <Loader type="Triangle" color="#FFF" height="200"	width="200" />
-	let conditionalSpinner = loading ? loaderSpinner : <h4>No timers available. Please add a timer using the form below.</h4>
+	const conditionalSpinner = loading ? loaderSpinner : <h4>No timers available. Please add a timer using the form below.</h4>
 
 	const addTimerComponent = <AddTimer 
 					onSubmit={onSubmit}

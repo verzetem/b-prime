@@ -20,6 +20,12 @@ const Updates = () => {
 					style={{ height: "11em" }}
 				>
 					<div className="card-body update-card">
+						<h5 className="card-title">May 11</h5>
+						<p className="card-text">
+							- Added AU, EU and NA to region list, TZ cards now reflect 
+							local time zones of selected region
+						</p>
+						<hr/>
 						<h5 className="card-title">May 10</h5>
 						<p className="card-text">
 							- Added loading indicators for fetch request

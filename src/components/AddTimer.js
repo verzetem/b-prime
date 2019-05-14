@@ -1,4 +1,5 @@
 import React from "react";
+import Loader from 'react-loader-spinner'
 
 const AddTimer = ({
 	onSubmit,
@@ -12,7 +13,24 @@ const AddTimer = ({
 	hoursListen,
 	minutesListen,
 	secondsListen,
+	loading2
 }) => {
+
+	const loaderSpinner = <Loader type="ThreeDots" color="#FFF" height="27.5"	width="27.5" />
+	let conditionalSpinner = loading2 ? <button
+				type="button"
+				className="btn btn-primary"
+				onClick={e => onSubmit(e)}
+			>
+				{loaderSpinner}
+			</button> : <button
+				type="button"
+				className="btn btn-primary"
+				onClick={e => onSubmit(e)}
+			>
+				Submit
+			</button>
+
 	return (
 		<div className="home add-timer">
 			<h1>Add Timer</h1>
@@ -65,13 +83,7 @@ const AddTimer = ({
 					value={newStructure.newTime.seconds}
 				/>
 			</form>
-			<button
-				type="button"
-				className="btn btn-primary"
-				onClick={e => onSubmit(e)}
-			>
-				Submit
-			</button>
+			{conditionalSpinner}
 			<button
 				type="button"
 				className="btn btn-warning"
