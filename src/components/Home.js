@@ -36,9 +36,6 @@ const Home = () => {
 					~web app is for desktop/laptop displays *only* at this time. Mobile
 					responsiveness coming soon.
 				</p>
-				<p className="trig-msg">
-					Hey Balls .|..
-				</p>
 			</div>
 		</div>
 	);
