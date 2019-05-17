@@ -7,6 +7,4 @@ Boredom Prime is a time zone conversion web app for reinforcement timers in the 
 ###### react-transition-group <https://reactcommunity.org/react-transition-group/>
 ###### node-sass <https://www.npmjs.com/package/node-sass>
 ###### SweetAlert <https://sweetalert.js.org/>
-###### react-table <https://www.npmjs.com/package/react-table>
-###### react-loader-spinner <https://www.npmjs.com/package/react-loader-spinner>
 
