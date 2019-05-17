@@ -1,9 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
+import Loader from 'react-loader-spinner'
 
 // {window.location.pathname === "/" ? "nav-button active" : "nav-button"}
 
-const Nav = ({ structureCount }) => {
+const Nav = ({ structureCount, loading }) => {
+
+	const loaderSpinner = <Loader type="ThreeDots" color="#000" height="20"	width="20" />
+	const conditionalSpinner = loading ? <span className="badge badge-light">{loaderSpinner}</span> : <span className="badge badge-light">{structureCount}</span>
+
 	return (
 		<div
 			className="col-sm-2"
@@ -37,7 +42,7 @@ const Nav = ({ structureCount }) => {
 									: "link-style"
 							}
 						>
-							<Link className="nav-link" to="/timers">Timers <span className="badge badge-light">{structureCount}</span></Link>
+							<Link className="nav-link" to="/timers">Timers {conditionalSpinner}</Link>
 						</span>
 						<a className="nav-link disabled" href="/">
 							Dscan

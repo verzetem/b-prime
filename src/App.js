@@ -48,9 +48,9 @@ class App extends Component {
     na: false,
     notification: false,
     notificationRed: false,
+    notificationInfo: false,
     loading: false,
     loading2: false,
-    interval: false //temporary
   }
 
   componentDidMount() {
@@ -58,12 +58,11 @@ class App extends Component {
     // https://powerful-beyond-25222.herokuapp.com/timers/
     // http://192.168.1.7:3130/timers/
     // https://frozen-garden-66478.herokuapp.com/timers/ (NEW DB)
-    this.setState({ loading: true})
-    setTimeout(() => this.fetchTimers(), 1000)
-    setInterval(() => { this.setState({ interval: !this.state.interval }) }, 1000) // temp solution
+    this.fetchTimers()
   }
 
   fetchTimers = () => {
+    this.setState({ loading: true })
     fetch("http://localhost:3130/timers/")
       .then(res => res.json())
       .then(timeData => {
@@ -173,6 +172,19 @@ class App extends Component {
       })
       .toFormat("DD TTT")
     return newTimer + " (EVE)"
+  }
+
+  localConversion = () => {
+    let state = this.state.newStructure.newTime
+    let newTimer = DateTime.local()
+      .plus({
+        days: state.days,
+        hours: state.hours,
+        minutes: state.minutes,
+        seconds: state.seconds
+      })
+      .toFormat("DD TTT")
+    return newTimer
   }
 
   pstConversion = () => {
@@ -387,6 +399,7 @@ class App extends Component {
 
   onSubmit = e => {
     e.preventDefault()
+    this.setState({ loading2: true })
     let strucInfo = this.state.structureInfo
     let newStruc = this.state.newStructure
     let newStrucTime = newStruc.newTime
@@ -402,7 +415,7 @@ class App extends Component {
         "Error",
         "Please fill out ALL fields and submit again",
         "error"
-      )
+      ) && this.setState({ loading2: false })
     }
     const time = this.timeConversion()
     const pst = this.pstConversion()
@@ -420,6 +433,8 @@ class App extends Component {
     const aest = this.aestConversion()
     const acst = this.acstConversion()
     const awst = this.awstConversion()
+    const local = this.localConversion()
+    setTimeout(() => {
     fetch("http://localhost:3130/timers/", {
       method: "POST",
       headers: {
@@ -429,6 +444,7 @@ class App extends Component {
         name: newStruc.newName,
         location: newStruc.newLocation,
         time: time,
+        local: local,
         pst: pst,
         mst: mst,
         cst: cst,
@@ -453,6 +469,7 @@ class App extends Component {
             name: response.timer.name,
             location: response.timer.location,
             time: response.timer.time,
+            local: response.timer.local,
             pst: pst,
             mst: mst,
             cst: cst,
@@ -469,14 +486,17 @@ class App extends Component {
             acst: acst,
             awst: awst
           })
-        })
+        });
+        this.setState({loading2: false });
       }).catch(error => {
+        this.setState({ loading2: false });
         swal(
           "Error",
           `${error.message}`,
           "error"
-          )
+          );
       })
+    }, 1000)
       this.resetInput()
       this.notificationActive()
     }
@@ -588,11 +608,11 @@ class App extends Component {
   notifMsgGreen = () => {
     let notification = this.state.notification
     let notifDefault = "alert alert-success"
-    let notifShow = !notification ? "" : " show"
-    let notifFade = notification ? "" : " fade"
+    let notifShow = " show"
+    let notifFade = " fade"
     if (notification) {
       return (
-      <div className={notifDefault + notifShow + notifFade} role="alert">
+      <div className={notifDefault + notifShow + notifFade } role="alert">
         Timer Added!
       </div>
       )
@@ -620,6 +640,34 @@ class App extends Component {
         </div>
         )
     }
+  }
+
+  refreshTimers = () => {
+    this.notificationActiveInfo();
+    this.fetchTimers();
+  }
+
+   notifMsgInfo = () => {
+    let notification = this.state.notificationInfo
+    let notifDefault = "alert alert-info"
+    let notifShow = " show"
+    let notifFade = " fade"
+    if (notification) {
+      return (
+      <div className={notifDefault + notifShow + notifFade } role="alert">
+        Data refreshed
+      </div>
+      )
+    }
+  }
+
+  notificationActiveInfo = () => {
+    this.setState({ notificationInfo: true })
+    setTimeout(() => this.notificationHideInfo(), 3000)
+  }
+
+  notificationHideInfo = () => {
+    this.setState({ notificationInfo: false })
   }
 
   loaderSpinner = () => {
@@ -655,6 +703,8 @@ class App extends Component {
   }
 
   render() {
+
+
     return (
       <Router>
         <div className="countainer-fluid">
@@ -662,7 +712,7 @@ class App extends Component {
             <Route
               path="/"
               render={props => (
-                <Nav structureCount={this.state.structureInfo.length} />
+                <Nav structureCount={this.state.structureInfo.length} loading={this.state.loading} />
               )}
             />
             <Switch>
@@ -687,7 +737,11 @@ class App extends Component {
                     notification={this.state.notification}
                     deleteTimer={this.deleteWarning}
                     loading={this.state.loading}
+                    loading2={this.state.loading2}
                     onRegionChange={this.onRegionChange}
+                    fetchTimers={this.fetchTimers}
+                    refreshTimers={this.refreshTimers}
+                    localConversion={this.localConversion}
                   />
                 )}
               />
@@ -697,6 +751,7 @@ class App extends Component {
           </div>
           { this.notifMsgGreen() }
           { this.notifMsgRed() }
+          { this.notifMsgInfo() }
           <TzModal
             regionAU={this.state.au}
             regionEU={this.state.eu}

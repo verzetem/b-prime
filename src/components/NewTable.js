@@ -1,8 +1,9 @@
 import React from "react";
 import ReactTable from 'react-table'
+import ReactTooltip from 'react-tooltip'
 
 
-const NewTable = ({ structureInfo, onOpenModal, deleteTimer }) => {
+const NewTable = ({ structureInfo, onOpenModal, deleteTimer, refreshTimers }) => {
  
   const columns = [{
     Header: 'Structure Name',
@@ -13,7 +14,8 @@ const NewTable = ({ structureInfo, onOpenModal, deleteTimer }) => {
   }, {
     filterable: false,
     Header: 'Comes Out',
-    accessor: 'time' // String-based value accessors!
+    accessor: 'time', // String-based value accessors!  data-event='click focus'
+    Cell: props => <span data-tip={props.original.local}>{props.value}<ReactTooltip type="info" effect="solid"/></span>
   }, {
   	filterable: false,
     Header: 'TZ Card',
@@ -28,11 +30,13 @@ const NewTable = ({ structureInfo, onOpenModal, deleteTimer }) => {
 
 	return (
 		<div>
+      
+      <button className="btn btn-dark" data-tip="Refresh table" type="button" style={{ margin: "0 !important" }} onClick={() => refreshTimers()}><i className="fas fa-sync-alt"></i></button>
 			<ReactTable
 				className="-striped -highlight"
 		    data={structureInfo}
 		    columns={columns}
-		    pageSizeOptions={[5, 10]}
+		    pageSizeOptions={[5, 10, 20, 50, 100]}
   			defaultPageSize={5}
   			filterable={true}
 		  />

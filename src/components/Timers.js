@@ -22,15 +22,32 @@ const TimersMain = ({
 	secondsListen,
 	locationListen,
 	loading,
-	onRegionChange
+	loading2,
+	onRegionChange,
+	fetchTimers,
+	refreshTimers,
+	localConversion
 }) => {
 	const now = DateTime.local().toFormat("DD TTT");
 	const gmt = DateTime.local()
 		.setZone("Iceland")
 		.toFormat("DD TTT");
 	const loaderSpinner = <Loader type="Triangle" color="#FFF" height="200"	width="200" />
-	let conditionalSpinner = loading ? loaderSpinner : <h4>No timers available. Please add a timer using the form below.</h4>
-	
+	const conditionalSpinner = loading ? loaderSpinner : <h4>No timers available. Please add a timer using the form below.</h4>
+
+	const addTimerComponent = <AddTimer 
+					onSubmit={onSubmit}
+					newStructure={newStructure}
+					resetInput={resetInput}
+					nameListen={nameListen}
+					daysListen={daysListen}
+					hoursListen={hoursListen}
+					minutesListen={minutesListen}
+					secondsListen={secondsListen}
+					locationListen={locationListen}
+					loading2={loading2}
+				/>
+
 
 	if (structureInfo.length !== 0) {
 		return (
@@ -49,6 +66,7 @@ const TimersMain = ({
 								Region
 							</label>
 						</div>
+
 						<select onChange={onRegionChange} className="custom-select" id="regionSelect">
 							<option defaultValue>Choose...</option>
 							<option value="au">Australia</option>
@@ -58,18 +76,8 @@ const TimersMain = ({
 					</div>
 				</div>
 				<br />
-				<NewTable structureInfo={structureInfo} onOpenModal={onOpenModal} deleteTimer={deleteTimer} />
-				<AddTimer
-					onSubmit={onSubmit}
-					newStructure={newStructure}
-					resetInput={resetInput}
-					nameListen={nameListen}
-					daysListen={daysListen}
-					hoursListen={hoursListen}
-					minutesListen={minutesListen}
-					secondsListen={secondsListen}
-					locationListen={locationListen}
-				/>
+				<NewTable structureInfo={structureInfo} onOpenModal={onOpenModal} deleteTimer={deleteTimer} refreshTimers={refreshTimers} localConversion={localConversion} />
+				{addTimerComponent}
 			</div>
 		);
 	} else {
@@ -98,17 +106,7 @@ const TimersMain = ({
 					</div>
 				</div>
 				{conditionalSpinner}
-				<AddTimer 
-					onSubmit={onSubmit}
-					newStructure={newStructure}
-					resetInput={resetInput}
-					nameListen={nameListen}
-					daysListen={daysListen}
-					hoursListen={hoursListen}
-					minutesListen={minutesListen}
-					secondsListen={secondsListen}
-					locationListen={locationListen}
-				/>
+				{addTimerComponent}
 			</div>
 		);
 	}

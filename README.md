@@ -8,4 +8,7 @@ Boredom Prime is a time zone conversion web app for reinforcement timers in the 
 ###### node-sass <https://www.npmjs.com/package/node-sass>
 ###### SweetAlert <https://sweetalert.js.org/>
 
+<<<<<<< HEAD
+=======
 ###### boredom-prime api <https://github.com/verzetem/bp-api/>
+>>>>>>> master
