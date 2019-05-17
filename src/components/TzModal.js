@@ -42,15 +42,14 @@ const TzModal = ({
 		return (
 		<Modal open={modalOpen} onClose={onCloseModal} center>
 			<h2 className="tz-card">Local TZ Conversions</h2>
+			<hr/>
 			{/*<div class="arrow bounce">
 				  <a class="fas fa-angle-down fa-2x tz-dn-arrow" href="#"></a>
 				</div>*/}
 			<center>
-				<h4 className="tz-card">{timerBST}(BST)</h4>
-				<h4 className="tz-card">{timerWET}(WET)</h4>
+				<h4 className="tz-card">{timerBST}(BST/WET)</h4>
 				<h4 className="tz-card">{timerCET}(CET)</h4>
-				<h4 className="tz-card">{timerEET}(EET)</h4>
-				<h4 className="tz-card">{timerMSK}(MSK)</h4>
+				<h4 className="tz-card">{timerEET}(EET/MSK)</h4>
 			</center>
 		</Modal>
 		)

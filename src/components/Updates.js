@@ -20,10 +20,17 @@ const Updates = () => {
 					style={{ height: "11em" }}
 				>
 					<div className="card-body update-card">
+<<<<<<< HEAD
 						<h5 className="card-title">May 11</h5>
 						<p className="card-text">
 							- Added AU, EU and NA to region list, TZ cards now reflect 
 							local time zones of selected region
+=======
+					<h5 className="card-title">May 11</h5>
+						<p className="card-text">
+							- Added AU, EU and NA to region list, TZ cards now reflect local time zones
+							of selected region
+>>>>>>> master
 						</p>
 						<hr/>
 						<h5 className="card-title">May 10</h5>
