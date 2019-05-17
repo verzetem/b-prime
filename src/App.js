@@ -51,10 +51,6 @@ class App extends Component {
     notificationInfo: false,
     loading: false,
     loading2: false,
-<<<<<<< HEAD
-=======
-    interval: false //temporary
->>>>>>> master
   }
 
   componentDidMount() {
