@@ -23,7 +23,10 @@ const TimersMain = ({
 	locationListen,
 	loading,
 	loading2,
-	onRegionChange
+	onRegionChange,
+	fetchTimers,
+	refreshTimers,
+	localConversion
 }) => {
 	const now = DateTime.local().toFormat("DD TTT");
 	const gmt = DateTime.local()
@@ -45,6 +48,7 @@ const TimersMain = ({
 					loading2={loading2}
 				/>
 
+
 	if (structureInfo.length !== 0) {
 		return (
 			<div className="col-md-7 home">
@@ -62,6 +66,7 @@ const TimersMain = ({
 								Region
 							</label>
 						</div>
+
 						<select onChange={onRegionChange} className="custom-select" id="regionSelect">
 							<option defaultValue>Choose...</option>
 							<option value="au">Australia</option>
@@ -71,7 +76,7 @@ const TimersMain = ({
 					</div>
 				</div>
 				<br />
-				<NewTable structureInfo={structureInfo} onOpenModal={onOpenModal} deleteTimer={deleteTimer} />
+				<NewTable structureInfo={structureInfo} onOpenModal={onOpenModal} deleteTimer={deleteTimer} refreshTimers={refreshTimers} localConversion={localConversion} />
 				{addTimerComponent}
 			</div>
 		);

@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 import Loader from 'react-loader-spinner'
 
 // {window.location.pathname === "/" ? "nav-button active" : "nav-button"}

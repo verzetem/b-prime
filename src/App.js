@@ -48,9 +48,9 @@ class App extends Component {
     na: false,
     notification: false,
     notificationRed: false,
+    notificationInfo: false,
     loading: false,
     loading2: false,
-    interval: false //temporary
   }
 
   componentDidMount() {
@@ -58,13 +58,12 @@ class App extends Component {
     // https://powerful-beyond-25222.herokuapp.com/timers/
     // http://192.168.1.7:3130/timers/
     // https://frozen-garden-66478.herokuapp.com/timers/ (NEW DB)
-    this.setState({ loading: true})
     this.fetchTimers()
-    setInterval(() => { this.setState({ interval: !this.state.interval }) }, 1000) // temp solution
   }
 
   fetchTimers = () => {
-    fetch("https://frozen-garden-66478.herokuapp.com/timers/")
+    this.setState({ loading: true })
+    fetch("http://localhost:3130/timers/")
       .then(res => res.json())
       .then(timeData => {
         this.setState({ structureInfo: timeData.timers });
@@ -173,6 +172,19 @@ class App extends Component {
       })
       .toFormat("DD TTT")
     return newTimer + " (EVE)"
+  }
+
+  localConversion = () => {
+    let state = this.state.newStructure.newTime
+    let newTimer = DateTime.local()
+      .plus({
+        days: state.days,
+        hours: state.hours,
+        minutes: state.minutes,
+        seconds: state.seconds
+      })
+      .toFormat("DD TTT")
+    return newTimer
   }
 
   pstConversion = () => {
@@ -421,8 +433,9 @@ class App extends Component {
     const aest = this.aestConversion()
     const acst = this.acstConversion()
     const awst = this.awstConversion()
+    const local = this.localConversion()
     setTimeout(() => {
-    fetch("https://frozen-garden-66478.herokuapp.com/timers/", {
+    fetch("http://localhost:3130/timers/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -431,6 +444,7 @@ class App extends Component {
         name: newStruc.newName,
         location: newStruc.newLocation,
         time: time,
+        local: local,
         pst: pst,
         mst: mst,
         cst: cst,
@@ -455,6 +469,7 @@ class App extends Component {
             name: response.timer.name,
             location: response.timer.location,
             time: response.timer.time,
+            local: response.timer.local,
             pst: pst,
             mst: mst,
             cst: cst,
@@ -491,7 +506,7 @@ class App extends Component {
     let strucInfo = this.state.structureInfo
     strucInfo.map(timer => {
       if (timer.id === timerId) {
-        return fetch("https://frozen-garden-66478.herokuapp.com/timers/" + timerId, {
+        return fetch("http://localhost:3130/timers/" + timerId, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json"
@@ -627,6 +642,34 @@ class App extends Component {
     }
   }
 
+  refreshTimers = () => {
+    this.notificationActiveInfo();
+    this.fetchTimers();
+  }
+
+   notifMsgInfo = () => {
+    let notification = this.state.notificationInfo
+    let notifDefault = "alert alert-info"
+    let notifShow = " show"
+    let notifFade = " fade"
+    if (notification) {
+      return (
+      <div className={notifDefault + notifShow + notifFade } role="alert">
+        Data refreshed
+      </div>
+      )
+    }
+  }
+
+  notificationActiveInfo = () => {
+    this.setState({ notificationInfo: true })
+    setTimeout(() => this.notificationHideInfo(), 3000)
+  }
+
+  notificationHideInfo = () => {
+    this.setState({ notificationInfo: false })
+  }
+
   loaderSpinner = () => {
     if (this.state.loading === false) {
       return null
@@ -660,6 +703,7 @@ class App extends Component {
   }
 
   render() {
+
 
     return (
       <Router>
@@ -695,6 +739,9 @@ class App extends Component {
                     loading={this.state.loading}
                     loading2={this.state.loading2}
                     onRegionChange={this.onRegionChange}
+                    fetchTimers={this.fetchTimers}
+                    refreshTimers={this.refreshTimers}
+                    localConversion={this.localConversion}
                   />
                 )}
               />
@@ -704,6 +751,7 @@ class App extends Component {
           </div>
           { this.notifMsgGreen() }
           { this.notifMsgRed() }
+          { this.notifMsgInfo() }
           <TzModal
             regionAU={this.state.au}
             regionEU={this.state.eu}
