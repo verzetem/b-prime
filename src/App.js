@@ -55,7 +55,7 @@ class App extends Component {
 
   componentDidMount() {
     // http://localhost:3130/timers/
-    // https://powerful-beyond-25222.herokuapp.com/timers/
+    // https://powerful-beyond-25222.herokuapp.com/timers/ (OLD)
     // http://192.168.1.7:3130/timers/
     // https://frozen-garden-66478.herokuapp.com/timers/ (NEW DB)
     this.fetchTimers()
