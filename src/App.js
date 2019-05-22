@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
-import { DateTime } from "luxon"
+import { DateTime, Interval } from "luxon"
 import swal from "@sweetalert/with-react"
 import Loader from 'react-loader-spinner'
 import "./App.scss"
@@ -63,7 +63,7 @@ class App extends Component {
 
   fetchTimers = () => {
     this.setState({ loading: true })
-    fetch("http://localhost:3130/timers/")
+    fetch("http://192.168.1.7:3130/timers/")
       .then(res => res.json())
       .then(timeData => {
         this.setState({ structureInfo: timeData.timers });
@@ -74,18 +74,17 @@ class App extends Component {
   }
 
   ////////// webhook test //////////
-  // webhook = (e) => {
-  //   // e.preventDefault()
-  //   let url = "https://discordapp.com/api/webhooks/571462934362980357/N2k1543TcMdwA-KGlJTsaZqGXEE_jQeVWGJgL2AzLa_8mI2iNH7GPvlAUAMZjo4fZhVr"
-  //   fetch(url, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     content: JSON.stringify("wake n bake!"),
-  //     muteHttpExceptions: true
-  //   })
-  // }
+  spookyWebhook = (message) => {
+    // e.preventDefault()
+    let url = "http://192.168.1.7:3130/ping"
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ content: `<@&579439413793128500> ${message}` })
+    })
+  }
 
   nameListen = e => {
     let input = e.target.value
@@ -435,7 +434,7 @@ class App extends Component {
     const awst = this.awstConversion()
     const local = this.localConversion()
     setTimeout(() => {
-    fetch("http://localhost:3130/timers/", {
+    fetch("http://192.168.1.7:3130/timers/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -506,7 +505,7 @@ class App extends Component {
     let strucInfo = this.state.structureInfo
     strucInfo.map(timer => {
       if (timer.id === timerId) {
-        return fetch("http://localhost:3130/timers/" + timerId, {
+        return fetch("http://192.168.1.7:3130/timers/" + timerId, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json"
@@ -702,6 +701,13 @@ class App extends Component {
     }
   }
 
+  countDown = (futureDate) => {
+    let date = new Date(futureDate).getTime()
+    let date2 = Date.now()
+    let date3 = date - date2
+    return date3
+  }
+
   render() {
 
 
@@ -742,6 +748,7 @@ class App extends Component {
                     fetchTimers={this.fetchTimers}
                     refreshTimers={this.refreshTimers}
                     localConversion={this.localConversion}
+                    countDown={this.countDown}
                   />
                 )}
               />
@@ -749,6 +756,7 @@ class App extends Component {
             </Switch>
             <Route path="/" render={props => <InfoTile />} />
           </div>
+          {/*<button onClick={this.spookyWebhook} className="btn btn-success">CLICK ME!!!!</button>*/}
           { this.notifMsgGreen() }
           { this.notifMsgRed() }
           { this.notifMsgInfo() }

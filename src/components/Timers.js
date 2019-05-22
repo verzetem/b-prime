@@ -26,7 +26,8 @@ const TimersMain = ({
 	onRegionChange,
 	fetchTimers,
 	refreshTimers,
-	localConversion
+	localConversion,
+	countDown
 }) => {
 	const now = DateTime.local().toFormat("DD TTT");
 	const gmt = DateTime.local()
@@ -76,7 +77,7 @@ const TimersMain = ({
 					</div>
 				</div>
 				<br />
-				<NewTable structureInfo={structureInfo} onOpenModal={onOpenModal} deleteTimer={deleteTimer} refreshTimers={refreshTimers} localConversion={localConversion} />
+				<NewTable structureInfo={structureInfo} onOpenModal={onOpenModal} deleteTimer={deleteTimer} refreshTimers={refreshTimers} localConversion={localConversion} countDown={countDown} />
 				{addTimerComponent}
 			</div>
 		);

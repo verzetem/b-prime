@@ -22,9 +22,18 @@ const Updates = () => {
 					<div className="card-body update-card">
 						<h5 className="card-title">May 11</h5>
 						<p className="card-text">
+							- Added refresh button for table.
+							<br/>
+							- Added local time conversion to tooltip
+							 (hover over the main "Comes Out" timer to see this change)
+						</p>
+						<hr/>
+						<h5 className="card-title">May 11</h5>
+						<p className="card-text">
 							- Added AU, EU and NA to region list, TZ cards now reflect 
 							local time zones of selected region
 						</p>
+						<hr/>
 					<h5 className="card-title">May 11</h5>
 						<p className="card-text">
 							- Added AU, EU and NA to region list, TZ cards now reflect local time zones
