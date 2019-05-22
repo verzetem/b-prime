@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
-import { DateTime, Interval } from "luxon"
+import { DateTime } from "luxon"
 import swal from "@sweetalert/with-react"
 import Loader from 'react-loader-spinner'
 import "./App.scss"
@@ -74,7 +74,7 @@ class App extends Component {
   }
 
   ////////// webhook test //////////
-  spookyWebhook = (message) => {
+  spookyWebhook = () => {
     // e.preventDefault()
     let url = "http://192.168.1.7:3130/ping"
     fetch(url, {
@@ -82,7 +82,7 @@ class App extends Component {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ content: `<@&579439413793128500> ${message}` })
+      body: JSON.stringify({ content: "<@&579439413793128500> Timer coming up soon. Check timers at http://boredom-prime2.surge.sh" })
     })
   }
 
@@ -705,7 +705,8 @@ class App extends Component {
     let date = new Date(futureDate).getTime()
     let date2 = Date.now()
     let date3 = date - date2
-    return date3
+    let date4 = Date.now() + date3
+    return date4
   }
 
   render() {
@@ -749,6 +750,7 @@ class App extends Component {
                     refreshTimers={this.refreshTimers}
                     localConversion={this.localConversion}
                     countDown={this.countDown}
+                    spookyWebhook={this.spookyWebhook}
                   />
                 )}
               />

@@ -27,7 +27,8 @@ const TimersMain = ({
 	fetchTimers,
 	refreshTimers,
 	localConversion,
-	countDown
+	countDown,
+	spookyWebhook
 }) => {
 	const now = DateTime.local().toFormat("DD TTT");
 	const gmt = DateTime.local()

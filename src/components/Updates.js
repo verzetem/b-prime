@@ -20,7 +20,12 @@ const Updates = () => {
 					style={{ height: "11em" }}
 				>
 					<div className="card-body update-card">
-						<h5 className="card-title">May 11</h5>
+						<h5 className="card-title">May 21</h5>
+						<p className="card-text">
+							- Added countdown timer.
+						</p>
+						<hr/>
+						<h5 className="card-title">May 14</h5>
 						<p className="card-text">
 							- Added refresh button for table.
 							<br/>
