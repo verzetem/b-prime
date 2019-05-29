@@ -28,12 +28,15 @@ const TimersMain = ({
 	refreshTimers,
 	localConversion,
 	countDown,
-	spookyWebhook
+	spookyWebhook,
+	renderer,
+	convertToggle,
+	timeToggle,
+	fuckTime2,
+	twentyFourTwelve
 }) => {
-	const now = DateTime.local().toFormat("DD TTT");
-	const gmt = DateTime.local()
-		.setZone("Iceland")
-		.toFormat("DD TTT");
+	const now = (timeToggle === false) ? DateTime.local().toFormat("DD TTT") : DateTime.local().toFormat("DD ttt");
+	const gmt = (timeToggle === false) ? DateTime.local().setZone("Iceland").toFormat("DD TTT") : DateTime.local().setZone("Iceland").toFormat("DD ttt")
 	const loaderSpinner = <Loader type="Triangle" color="#FFF" height="200"	width="200" />
 	const conditionalSpinner = loading ? loaderSpinner : <h4>No timers available. Please add a timer using the form below.</h4>
 
@@ -62,7 +65,7 @@ const TimersMain = ({
 					<p className="card-text">
 						Local: {now} <br /> EVE: {gmt}
 					</p>
-					<div className="input-group">
+					{/*<div className="input-group">
 						<div className="input-group-prepend">
 							<label className="input-group-text" htmlFor="regionSelect">
 								Region
@@ -75,10 +78,10 @@ const TimersMain = ({
 							<option value="eu">Europe</option>
 							<option value="na">North America</option>
 						</select>
-					</div>
+					</div>*/}
 				</div>
 				<br />
-				<NewTable structureInfo={structureInfo} onOpenModal={onOpenModal} deleteTimer={deleteTimer} refreshTimers={refreshTimers} localConversion={localConversion} countDown={countDown} />
+				<NewTable structureInfo={structureInfo} onOpenModal={onOpenModal} deleteTimer={deleteTimer} refreshTimers={refreshTimers} localConversion={localConversion} countDown={countDown} spookyWebhook={spookyWebhook} convertToggle={convertToggle} twentyFourTwelve={twentyFourTwelve} />
 				{addTimerComponent}
 			</div>
 		);
@@ -93,19 +96,20 @@ const TimersMain = ({
 					<p className="card-text">
 						Local: {now} <br /> EVE: {gmt}
 					</p>
-					<div className="input-group">
+					{/*<div className="input-group">
 						<div className="input-group-prepend">
 							<label className="input-group-text" htmlFor="regionSelect">
 								Region
 							</label>
 						</div>
-						<select onChange={e => onRegionChange(e)} className="custom-select" id="regionSelect">
+
+						<select onChange={onRegionChange} className="custom-select" id="regionSelect">
 							<option defaultValue>Choose...</option>
 							<option value="au">Australia</option>
 							<option value="eu">Europe</option>
 							<option value="na">North America</option>
 						</select>
-					</div>
+					</div>*/}
 				</div>
 				{conditionalSpinner}
 				{addTimerComponent}
