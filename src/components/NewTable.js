@@ -2,7 +2,6 @@ import React from "react";
 import ReactTable from 'react-table'
 import ReactTooltip from 'react-tooltip'
 import Countdown from 'react-countdown-now';
-import { DateTime } from 'luxon'
 
 // return <Countdown date={Date.now() + date3} />
 // let newTwentyFour = DateTime.local().setZone("Iceland").toFormat('DD TTT')
@@ -54,6 +53,7 @@ const NewTable = ({ structureInfo, onOpenModal, deleteTimer, refreshTimers, coun
     filterable: false,
     Header: 'Comes Out',
     accessor: 'time', // String-based value accessors! {/*data-tip={fuckTime2(props.original.time)}*/} data-event="click focus"
+    // sortMethod: (a, b) => {  } ,
     Cell: props => <span data-tip={new Date(props.original.time).toLocaleDateString('en-US', options)}>{twentyFourTwelve(props.value)}<ReactTooltip type="info" effect="solid"/></span>
   }, {
     filterable: false,

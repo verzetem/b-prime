@@ -35,6 +35,7 @@ class App extends Component {
   componentDidMount() {
     // http://localhost:3030/timers/
     // http://192.168.1.7:3130/timers/
+    // https://calm-mesa-24507.herokuapp.com/timers (NEW NEW DB)
     // https://frozen-garden-66478.herokuapp.com/timers/ (NEW DB)
     this.fetchTimers()
     this.notifyMounted()
@@ -42,7 +43,7 @@ class App extends Component {
 
   fetchTimers = () => {
     this.setState({ loading: true })
-    fetch("http://localhost:3030/timers/")
+    fetch("https://calm-mesa-24507.herokuapp.com/timers")
       .then(res => res.json())
       .then(timeData => {
         this.setState({ structureInfo: timeData.timers });
@@ -52,17 +53,17 @@ class App extends Component {
       }).then(() => this.setState({ loading: false }) )
   }
 
-  /// webhook test /// https://discordapp.com/api/webhooks/581533413568151553/n3wYFBy6iarwMS_sxYYiVoH4pXwk3G_tsDpvyDXSxKTP7CMpNG3_ru9b1zWEaovvlSPh
+  /// webhook test discord /// https://discordapp.com/api/webhooks/581533413568151553/n3wYFBy6iarwMS_sxYYiVoH4pXwk3G_tsDpvyDXSxKTP7CMpNG3_ru9b1zWEaovvlSPh
   spookyWebhook = (time) => {
     const t = time
-    const url = "http://localhost:3030/ping/"
+    const url = "https://calm-mesa-24507.herokuapp.com/ping"
     if (t.days === 0 && t.hours === 1 && t.minutes === 0 && t.seconds === 0 ) {
       fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ content: "<@&579439413793128500> Less than **1 hour** until next timer." })
+        body: JSON.stringify({ content: "<@&479394031323840513>  Less than **1 hour** until next timer." })
       })
     } else if (t.days === 0 && t.hours === 0 && t.minutes === 30 && t.seconds === 0) {
       fetch(url, {
@@ -70,7 +71,15 @@ class App extends Component {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ content: "<@&579439413793128500> Less than **30 minutes** until next timer." })
+        body: JSON.stringify({ content: "<@&479394031323840513> Less than **30 minutes** until next timer." })
+      })
+    } else if (t.days === 0 && t.hours === 0 && t.minutes === 0 && t.seconds === 1) {
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ content: "<@&479394031323840513> Time to shoot something! Timer expired! Check Timerboard." })
       })
     } else {
       return null
@@ -196,7 +205,7 @@ class App extends Component {
     }
     const time = this.timeConversion()
     setTimeout(() => {
-    fetch("http://localhost:3030/timers/", {
+    fetch("https://calm-mesa-24507.herokuapp.com/timers", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -236,7 +245,7 @@ class App extends Component {
     let strucInfo = this.state.structureInfo
     strucInfo.map(timer => {
       if (timer.id === timerId) {
-        return fetch("http://localhost:3030/timers/" + timerId, {
+        return fetch("https://calm-mesa-24507.herokuapp.com/timers" + timerId, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json"

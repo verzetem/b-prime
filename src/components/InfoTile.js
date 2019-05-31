@@ -8,7 +8,7 @@ const InfoTile = () => {
 	const thing = "Rocar Evaal"
 	const thing2 = "54.30m"
 	
-	if (2 === 1) {
+	if (1 === 1) {
 		return (
 			<div className="col-lg-3 home">
 				<div
@@ -30,7 +30,7 @@ const InfoTile = () => {
 						<button className="btn btn-dark" data-tip="Refresh table" type="button" style={{ margin: "0 !important" }}><i className="fas fa-sync-alt"></i></button>
 						<hr/>
 						<div className="zkb-wrapper">
-							Something went wrong...
+							/// Work In Progress ///
 						</div>
 					</div>
 				</div>
