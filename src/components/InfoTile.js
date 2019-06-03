@@ -1,5 +1,4 @@
 import React from "react";
-import Updates from "./Updates";
 import ReactTooltip from 'react-tooltip'
 
 
@@ -26,15 +25,14 @@ const InfoTile = () => {
 						alt="..."
 					/>*/}
 					<div className="card-body">
-						<h5 className="card-title">Last 5 kills</h5>
-						<button className="btn btn-dark" data-tip="Refresh table" type="button" style={{ margin: "0 !important" }}><i className="fas fa-sync-alt"></i></button>
+						<h5 className="card-title">Last 6 kills / losses</h5>
+						<button className="btn btn-dark" data-tip="Refresh kills/losses" type="button" style={{ margin: "0 !important" }}><i className="fas fa-sync-alt"></i></button>
 						<hr/>
 						<div className="zkb-wrapper">
 							/// Work In Progress ///
 						</div>
 					</div>
 				</div>
-				<Updates />
 			</div>
 			)
 	} else {
@@ -55,10 +53,11 @@ const InfoTile = () => {
 						alt="..."
 					/>*/}
 					<div className="card-body">
-						<h5 className="card-title">Last 5 kills / losses <button className="btn btn-dark" data-tip="Refresh recent kills" type="button" style={{ fontSize: "0.5em", margin: "0 !important" }}><i className="fas fa-sync-alt zkb-refresh"></i></button></h5>
+						<h5 className="card-title">Last 6 kills / losses <button className="btn btn-dark" data-tip="Refresh kills/losses" type="button" style={{ fontSize: "0.5em", margin: "0 !important" }}><i className="fas fa-sync-alt zkb-refresh"></i></button></h5>
 						<hr/>
 						<div className="zkb-wrapper">
 							<img data-tip={thing + " : " + thing2} className="zkb-pic" src="https://imageserver.eveonline.com/Type/634_64.png" alt=""/>
+							<img className="zkb-pic" src="https://imageserver.eveonline.com/Type/634_64.png" alt=""/>
 							<img className="zkb-pic" src="https://imageserver.eveonline.com/Type/634_64.png" alt=""/>
 							<img className="zkb-pic" src="https://imageserver.eveonline.com/Type/634_64.png" alt=""/>
 							<img className="zkb-pic" src="https://imageserver.eveonline.com/Type/634_64.png" alt=""/>
@@ -67,7 +66,6 @@ const InfoTile = () => {
 						</div>
 					</div>
 				</div>
-				<Updates />
 			</div>
 			)
 	}

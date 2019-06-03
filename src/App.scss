@@ -16,6 +16,7 @@ body, html {
 .table-wrapper {
   padding: 0 !important;
   margin-top: -1.6em !important;
+  margin-bottom: 1em;
 }
 
 .container-fluid {
@@ -197,22 +198,19 @@ table {
 
 .input-one {
   margin: 0 auto 15px auto;
-  text-align: center;
-  width: 300px;
+  text-align: center !important;
+  width: 15em;
 }
 
 .input-two {
   margin-right: auto !important;
   margin-left: 5px !important;
   text-align: center;
-  width: 125px !important;
+  width: 3em !important;
 }
 
-select {
-  width: 200px !important;
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom: 2.5%;
+.custom-select {
+  text-align: center !important;
 }
 
 .Toastify__toast {
@@ -268,24 +266,20 @@ button.btn {
   }
 }
 
+.btn-secondary {
+  font-size: 0.8em;
+  transition: all 0.3s ease;
+  &:hover {
+    color: #8ECAFF
+  }
+}
+
 button.btn.btn-primary {
-  width: 5em;
+  width: 5.5em;
 }
 
 button.btn.btn-warning {
-  width: 5em;
-}
-
-.badge-info {
-  font-size: 1em;
-  font-weight: normal;
-  border: 1px solid rgba(0,0,0,0.7);
-  transition: all 0.3s;
-  &:hover {
-    background-color: #12616E;
-    cursor: pointer;
-    border: 1px solid rgba(0,0,0,0.4);
-  }
+  width: 5.5em;
 }
 
 .badge-danger {
@@ -294,7 +288,7 @@ button.btn.btn-warning {
   border: 1px solid rgba(0,0,0,0.7);
   transition: all 0.3s;
   &:hover {
-    background-color: #76202A;
+    background-color: #A52B3B;
     cursor: pointer;
     border: 1px solid rgba(0,0,0,0.4);
   }
@@ -302,11 +296,13 @@ button.btn.btn-warning {
 
 .zkb-wrapper {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   align-content: center;
   border-radius: 3px;
   font-size: 0.8em;
   text-align: center;
+  // margin: 0 0.1em;
 }
 
 .zkb-refresh {
@@ -369,6 +365,15 @@ button.btn.btn-warning {
   border-radius: 8px;
   max-height: 32em;
   overflow-y: scroll !important;
+  background-color: #2D2E34;
+}
+
+.styles_closeButton__20ID4 {
+  fill: #FFF !important;
+  transition: all 0.3s ease;
+  &:hover {
+    fill: #8ECAFF !important;
+  }
 }
 
 .styles_modal__gNwvD::-webkit-scrollbar { 

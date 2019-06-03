@@ -25,17 +25,20 @@ class App extends Component {
         hours: "",
         minutes: "",
         seconds: ""
-      }
+      },
+      newType: ""
     },
+    modalOpen: false,
     loading: false,
     loading2: false,
-    timeToggle: false
+    timeToggle: false,
+    selected: ""
   }
 
   componentDidMount() {
     // http://localhost:3030/timers/
     // http://192.168.1.7:3130/timers/
-    // https://calm-mesa-24507.herokuapp.com/timers (NEW NEW DB)
+    // https://mighty-waters-39952.herokuapp.com/timers/ (NEW NEW DB)
     // https://frozen-garden-66478.herokuapp.com/timers/ (NEW DB)
     this.fetchTimers()
     this.notifyMounted()
@@ -43,7 +46,7 @@ class App extends Component {
 
   fetchTimers = () => {
     this.setState({ loading: true })
-    fetch("https://calm-mesa-24507.herokuapp.com/timers")
+    fetch("https://mighty-waters-39952.herokuapp.com/timers")
       .then(res => res.json())
       .then(timeData => {
         this.setState({ structureInfo: timeData.timers });
@@ -53,11 +56,11 @@ class App extends Component {
       }).then(() => this.setState({ loading: false }) )
   }
 
-  /// webhook test discord /// https://discordapp.com/api/webhooks/581533413568151553/n3wYFBy6iarwMS_sxYYiVoH4pXwk3G_tsDpvyDXSxKTP7CMpNG3_ru9b1zWEaovvlSPh
+  /// webhook test discord /// 
   spookyWebhook = (time) => {
     const t = time
-    const url = "https://calm-mesa-24507.herokuapp.com/ping"
-    if (t.days === 0 && t.hours === 1 && t.minutes === 0 && t.seconds === 0 ) {
+    const url = "https://mighty-waters-39952.herokuapp.com/ping"
+    if (t.days === 0 && t.hours === 0 && t.minutes === 59 && t.seconds === 59 ) {
       fetch(url, {
         method: "POST",
         headers: {
@@ -65,21 +68,13 @@ class App extends Component {
         },
         body: JSON.stringify({ content: "<@&479394031323840513>  Less than **1 hour** until next timer." })
       })
-    } else if (t.days === 0 && t.hours === 0 && t.minutes === 30 && t.seconds === 0) {
+    } else if (t.days === 0 && t.hours === 0 && t.minutes === 29 && t.seconds === 59) {
       fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({ content: "<@&479394031323840513> Less than **30 minutes** until next timer." })
-      })
-    } else if (t.days === 0 && t.hours === 0 && t.minutes === 0 && t.seconds === 1) {
-      fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ content: "<@&479394031323840513> Time to shoot something! Timer expired! Check Timerboard." })
       })
     } else {
       return null
@@ -158,6 +153,17 @@ class App extends Component {
     })
   }
 
+  typeListen = e => {
+    let input = e.target.value
+    this.setState({
+      newStructure: {
+        ...this.state.newStructure,
+        newType: input
+      }
+    })
+    this.setState({selected: input})
+  } 
+
   timeConversion = () => {
     let state = this.state.newStructure.newTime
     let newTimer = DateTime.local()
@@ -189,23 +195,66 @@ class App extends Component {
     let strucInfo = this.state.structureInfo
     let newStruc = this.state.newStructure
     let newStrucTime = newStruc.newTime
-    if (
-      newStruc.newName.length === 0 ||
-      newStruc.newLocation.length === 0 ||
-      newStrucTime.days.length === 0 ||
-      newStrucTime.minutes.length === 0 ||
-      newStrucTime.hours.length === 0 ||
-      newStrucTime.seconds.length === 0
-    ) {
+      if (
+        newStruc.newName.length === 0 &&
+        newStruc.newType.length === 0 &&
+        newStruc.newLocation.length === 0 &&
+        newStrucTime.days.length === 0 &&
+        newStrucTime.hours.length === 0 &&
+        newStrucTime.minutes.length === 0 &&
+        newStrucTime.seconds.length === 0
+        )
+        { return swal(
+          "Error",
+          "Please enter more data about structure timer.",
+          "error"
+          ) && this.setState({ loading2: false }) 
+        } else if (newStruc.newName.length === 0) {
+          return swal(
+        "Error",
+        "Please fill out name field.",
+        "error"
+      ) && this.setState({ loading2: false }) 
+    } else if (newStruc.newType.length === 0) {
       return swal(
         "Error",
-        "Please fill out ALL fields and submit again",
+        "Please fill out location field.",
+        "error"
+      ) && this.setState({ loading2: false })
+    } else if (newStruc.newLocation.length === 0) {
+      return swal(
+        "Error",
+        "Please pick timer type (i.e. shield, armor, hull).",
+        "error"
+      ) && this.setState({ loading2: false })
+    } else if (newStrucTime.days.length === 0) {
+      return swal(
+        "Error",
+        "Please fill out days field.",
+        "error"
+      ) && this.setState({ loading2: false })
+    } else if (newStrucTime.hours.length === 0) {
+      return swal(
+        "Error",
+        "Please fill out hours field.",
+        "error"
+      ) && this.setState({ loading2: false })
+    } else if (newStrucTime.minutes.length === 0) {
+      return swal(
+        "Error",
+        "Please fill out minutes field.",
+        "error"
+      ) && this.setState({ loading2: false }) 
+    } else if (newStrucTime.seconds.length === 0) {
+      return swal(
+        "Error",
+        "Please fill out seconds field.",
         "error"
       ) && this.setState({ loading2: false })
     }
     const time = this.timeConversion()
     setTimeout(() => {
-    fetch("https://calm-mesa-24507.herokuapp.com/timers", {
+    fetch("https://mighty-waters-39952.herokuapp.com/timers", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -213,7 +262,8 @@ class App extends Component {
       body: JSON.stringify({
         name: newStruc.newName,
         location: newStruc.newLocation,
-        time: time
+        time: time,
+        type: newStruc.newType
       })
     }).then(response => response.json())
       .then(response => {
@@ -222,8 +272,8 @@ class App extends Component {
             id: response.id,
             name: response.timer.name,
             location: response.timer.location,
-            time: response.timer.time
-            // local: response.timer.local
+            time: response.timer.time,
+            type: response.timer.type
           })
         });
         this.setState({loading2: false });
@@ -245,7 +295,7 @@ class App extends Component {
     let strucInfo = this.state.structureInfo
     strucInfo.map(timer => {
       if (timer.id === timerId) {
-        return fetch("https://calm-mesa-24507.herokuapp.com/timers" + timerId, {
+        return fetch("https://mighty-waters-39952.herokuapp.com/timers/" + timerId, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json"
@@ -287,7 +337,14 @@ class App extends Component {
     })
   }
 
+  selectDefault = () => {
+    this.setState({
+      selected: "Confirm"
+    })
+  }  
+
   resetInput = e => {
+    this.selectDefault()
     this.setState({
       newStructure: {
         newName: "",
@@ -297,7 +354,8 @@ class App extends Component {
           hours: "",
           minutes: "",
           seconds: ""
-        }
+        },
+        newType: ""
       }
     })
   }
@@ -406,6 +464,33 @@ class App extends Component {
     draggable: true
   })
 
+  onOpenModal = () => {
+    this.setState({ modalOpen: true })
+  }
+
+  onCloseModal = () => {
+    this.setState({ modalOpen: false })
+  }
+  
+  pageSize = () => {
+    let structureInfo = this.state.structureInfo.length
+    if (structureInfo < 5) {
+      return ([5])
+    } else if (structureInfo > 5 && structureInfo <= 10) {
+      return ([5, 10])
+    } else if (structureInfo > 10 && structureInfo <= 20) {
+      return ([5, 10, 20])
+    } else if (structureInfo > 20 && structureInfo <= 30) {
+      return ([5, 10, 20, 30])
+    } else if (structureInfo > 30 && structureInfo <= 40) {
+      return ([5, 10, 20, 30, 40])
+    } else if (structureInfo > 40 && structureInfo <= 50) {
+      return ([5, 10, 20, 30, 40, 50])
+    } else {
+      return null
+    }
+  }
+
   render() {
     return (
       <Router>
@@ -423,7 +508,6 @@ class App extends Component {
                 path="/timers"
                 render={props => (
                   <Timers
-                    fuckTime2={this.fuckTime2}
                     structureInfo={this.state.structureInfo}
                     newStructure={this.state.newStructure}
                     onSubmit={this.onSubmit}
@@ -441,15 +525,15 @@ class App extends Component {
                     deleteTimer={this.deleteWarning}
                     loading={this.state.loading}
                     loading2={this.state.loading2}
-                    onRegionChange={this.onRegionChange}
                     fetchTimers={this.fetchTimers}
                     refreshTimers={this.refreshTimers}
-                    localConversion={this.localConversion}
                     countDown={this.countDown}
                     spookyWebhook={this.spookyWebhook}
                     twentyFourTwelve={this.twentyFourTwelve}
                     convertToggle={this.convertToggle}
                     timeToggle={this.state.timeToggle}
+                    typeListen={this.typeListen}
+                    selected={this.state.selected}
                   />
                 )}
               />

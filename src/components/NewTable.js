@@ -1,7 +1,10 @@
 import React from "react";
 import ReactTable from 'react-table'
 import ReactTooltip from 'react-tooltip'
-import Countdown from 'react-countdown-now';
+import Modal from 'react-responsive-modal'
+import Countdown from 'react-countdown-now'
+
+import AddTimerModal from "./AddTimerModal"
 
 // return <Countdown date={Date.now() + date3} />
 // let newTwentyFour = DateTime.local().setZone("Iceland").toFormat('DD TTT')
@@ -13,8 +16,7 @@ import Countdown from 'react-countdown-now';
   //   Cell: props => <span className="badge badge-info" onClick={e => onOpenModal(e, props.original.id)}>Open</span>
   // },
 
-
-const NewTable = ({ structureInfo, onOpenModal, deleteTimer, refreshTimers, countDown, spookyWebhook, convertToggle, twentyFourTwelve, timeToggle, fuckTime2 }) => {
+const NewTable = ({ onSubmit, loading2, selected, resetInput, nameListen, typeListen, daysListen, hoursListen, minutesListen, secondsListen, locationListen, structureInfo, newStructure, onOpenModal, onCloseModal, modalOpen, deleteTimer, refreshTimers, countDown, spookyWebhook, convertToggle, twentyFourTwelve, timeToggle }) => {
 
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
@@ -24,8 +26,10 @@ const NewTable = ({ structureInfo, onOpenModal, deleteTimer, refreshTimers, coun
       return <span style={{backgroundColor: "rgba(255,0,0,0.2)", borderRadius: "3px", padding: "0 0.3em 0 0.3em"}}>{days}d {hours}h {minutes}m {seconds}s</span>
     } else if (days === 0 && hours < 24) {
       return <span style={{backgroundColor: "rgba(255,150,0,0.5)", borderRadius: "3px", padding: "0 0.3em 0 0.3em"}}>{days}d {hours}h {minutes}m {seconds}s</span>
-    } else {
+    } else if (days === 1 && hours < 24) {
       return <span>{days}d {hours}h {minutes}m {seconds}s</span>
+    } else {
+      return null
     }
   }
 
@@ -44,11 +48,15 @@ const NewTable = ({ structureInfo, onOpenModal, deleteTimer, refreshTimers, coun
   const columns = [{
     Header: 'Structure Name',
     accessor: 'name', // String-based value accessors!
-    Cell: props => <span data-tip={props.value}>{props.value}<ReactTooltip type="info" effect="solid"/></span>
-  },{
+    Cell: props => <span>{props.value}</span>
+  }, {
+    Header: 'Type',
+    accessor: 'type', // String-based value accessors!
+    Cell: props => <span>{props.value}</span>
+  }, {
     Header: 'Location',
     accessor: 'location', // String-based value accessors!
-    Cell: props => <span data-tip={props.value}>{props.value}<ReactTooltip type="info" effect="solid"/></span>
+    Cell: props => <span>{props.value}</span>
   }, {
     filterable: false,
     Header: 'Comes Out',
@@ -70,23 +78,33 @@ const NewTable = ({ structureInfo, onOpenModal, deleteTimer, refreshTimers, coun
 	return (
     
 		<div className="table-wrapper">
+      <button className="btn btn-dark" type="button" style={{ margin: "0 !important" }} onClick={() => onOpenModal()}>Add Timer</button>
       <button className="btn btn-dark" data-tip="Refresh table" type="button" style={{ margin: "0 !important" }} onClick={() => refreshTimers()}><i className="fas fa-sync-alt"></i></button>
       <button className="btn btn-dark" data-tip="24h / 12h" type="button" style={{ margin: "0 !important" }} onClick={() => convertToggle()}><i className="fas fa-clock"></i></button>
 			<ReactTable
 				className="-striped -highlight"
 		    data={structureInfo}
 		    columns={columns}
-		    pageSizeOptions={[5, 10, 20, 50, 100]}
+		    pageSizeOptions={[5, 10, 20, 50]}
   			defaultPageSize={5}
   			filterable={true}
-        getTrProps={(state, rowInfo, column) => {
-          return {
-            style: {
-              backgroundColor: 19 > 20 ? 'rgba(255,0,0,0.2)' : 'null'
-            }
-          }
-        }}
 		  />
+      <AddTimerModal 
+        modalOpen={modalOpen} 
+        onCloseModal={onCloseModal}
+        newStructure={newStructure}
+        onSubmit={onSubmit}
+        resetInput={resetInput}
+        nameListen={nameListen}
+        daysListen={daysListen}
+        hoursListen={hoursListen}
+        minutesListen={minutesListen}
+        secondsListen={secondsListen}
+        locationListen={locationListen}
+        typeListen={typeListen}
+        selected={selected}
+        loading2={loading2}
+      />
 		</div>
 	);
 };
