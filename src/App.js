@@ -470,6 +470,7 @@ class App extends Component {
 
   onCloseModal = () => {
     this.setState({ modalOpen: false })
+    this.resetInput()
   }
   
   pageSize = () => {

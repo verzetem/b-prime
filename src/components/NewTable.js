@@ -48,31 +48,37 @@ const NewTable = ({ onSubmit, loading2, selected, resetInput, nameListen, typeLi
   const columns = [{
     Header: 'Structure Name',
     accessor: 'name', // String-based value accessors!
-    Cell: props => <span>{props.value}</span>
+    Cell: props => <span>{props.value}</span>,
+    maxWidth: "400"
   }, {
     Header: 'Type',
     accessor: 'type', // String-based value accessors!
-    Cell: props => <span>{props.value}</span>
+    Cell: props => <span>{props.value}</span>,
+    maxWidth: "100"
   }, {
     Header: 'Location',
     accessor: 'location', // String-based value accessors!
-    Cell: props => <span>{props.value}</span>
+    Cell: props => <span>{props.value}</span>,
+    maxWidth: "120"
   }, {
     filterable: false,
     Header: 'Comes Out',
     accessor: 'time', // String-based value accessors! {/*data-tip={fuckTime2(props.original.time)}*/} data-event="click focus"
     // sortMethod: (a, b) => {  } ,
-    Cell: props => <span data-tip={new Date(props.original.time).toLocaleDateString('en-US', options)}>{twentyFourTwelve(props.value)}<ReactTooltip type="info" effect="solid"/></span>
+    Cell: props => <span data-tip={new Date(props.original.time).toLocaleDateString('en-US', options)}>{twentyFourTwelve(props.value)}<ReactTooltip type="info" effect="solid"/></span>,
+    maxWidth: "250"
   }, {
     filterable: false,
     Header: 'Countdown',
     accessor: 'null', // String-based value accessors!
-    Cell: props => <Countdown onTick={(time) => spookyWebhook(time) } renderer={renderer} date={countDown(props.original.time)} /> 
+    Cell: props => <Countdown onTick={(time) => spookyWebhook(time) } renderer={renderer} date={countDown(props.original.time)} /> ,
+    maxWidth: "150"
   }, {
   	filterable: false,
     Header: ' ',
     accessor: 'null', // String-based value accessors!
-    Cell: props => <span className="badge badge-danger" onClick={e => deleteTimer(e, props.original.id)}>Delete</span>
+    Cell: props => <span className="badge badge-danger" onClick={e => deleteTimer(e, props.original.id)}>Delete</span>,
+    maxWidth: "100"
   }]
 
 	return (
