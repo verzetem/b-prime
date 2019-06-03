@@ -6,10 +6,11 @@ import NewTable from "./NewTable"
 import AddTimer from "./AddTimer"
 
 
-const TimersMain = ({
+const Timers = ({
 	structureInfo,
 	deleteTimer,
 	notification,
+	modalOpen,
 	onOpenModal,
 	onCloseModal,
 	newStructure,
@@ -23,15 +24,20 @@ const TimersMain = ({
 	locationListen,
 	loading,
 	loading2,
-	onRegionChange,
 	fetchTimers,
 	refreshTimers,
-	localConversion
+	localConversion,
+	countDown,
+	spookyWebhook,
+	renderer,
+	convertToggle,
+	timeToggle,
+	twentyFourTwelve,
+	typeListen,
+	selected
 }) => {
-	const now = DateTime.local().toFormat("DD TTT");
-	const gmt = DateTime.local()
-		.setZone("Iceland")
-		.toFormat("DD TTT");
+	const now = (timeToggle === false) ? DateTime.local().toFormat("DD TTT") : DateTime.local().toFormat("DD ttt");
+	const gmt = (timeToggle === false) ? DateTime.local().setZone("Iceland").toFormat("DD TTT") : DateTime.local().setZone("Iceland").toFormat("DD ttt")
 	const loaderSpinner = <Loader type="Triangle" color="#FFF" height="200"	width="200" />
 	const conditionalSpinner = loading ? loaderSpinner : <h4>No timers available. Please add a timer using the form below.</h4>
 
@@ -46,6 +52,12 @@ const TimersMain = ({
 					secondsListen={secondsListen}
 					locationListen={locationListen}
 					loading2={loading2}
+					typeListen={typeListen}
+					resetInput={resetInput}
+					nameListen={nameListen}
+					locationListen={locationListen}
+					typeListen={typeListen}
+					selected={selected}
 				/>
 
 
@@ -60,7 +72,7 @@ const TimersMain = ({
 					<p className="card-text">
 						Local: {now} <br /> EVE: {gmt}
 					</p>
-					<div className="input-group">
+					{/*<div className="input-group">
 						<div className="input-group-prepend">
 							<label className="input-group-text" htmlFor="regionSelect">
 								Region
@@ -73,11 +85,35 @@ const TimersMain = ({
 							<option value="eu">Europe</option>
 							<option value="na">North America</option>
 						</select>
-					</div>
+					</div>*/}
 				</div>
 				<br />
-				<NewTable structureInfo={structureInfo} onOpenModal={onOpenModal} deleteTimer={deleteTimer} refreshTimers={refreshTimers} localConversion={localConversion} />
-				{addTimerComponent}
+				<NewTable
+					structureInfo={structureInfo} 
+					newStructure={newStructure} 
+					onOpenModal={onOpenModal} 
+					onCloseModal={onCloseModal} 
+					modalOpen={modalOpen} 
+					deleteTimer={deleteTimer} 
+					refreshTimers={refreshTimers} 
+					localConversion={localConversion} 
+					countDown={countDown} 
+					spookyWebhook={spookyWebhook} 
+					convertToggle={convertToggle} 
+					twentyFourTwelve={twentyFourTwelve}
+					resetInput={resetInput}
+					nameListen={nameListen}
+					daysListen={daysListen}
+					hoursListen={hoursListen}
+					minutesListen={minutesListen}
+					secondsListen={secondsListen}
+					locationListen={locationListen}
+					loading2={loading2}
+					typeListen={typeListen}
+					onSubmit={onSubmit}
+					selected={selected}
+				/>
+				
 			</div>
 		);
 	} else {
@@ -91,19 +127,6 @@ const TimersMain = ({
 					<p className="card-text">
 						Local: {now} <br /> EVE: {gmt}
 					</p>
-					<div className="input-group">
-						<div className="input-group-prepend">
-							<label className="input-group-text" htmlFor="regionSelect">
-								Region
-							</label>
-						</div>
-						<select onChange={e => onRegionChange(e)} className="custom-select" id="regionSelect">
-							<option defaultValue>Choose...</option>
-							<option value="au">Australia</option>
-							<option value="eu">Europe</option>
-							<option value="na">North America</option>
-						</select>
-					</div>
 				</div>
 				{conditionalSpinner}
 				{addTimerComponent}
@@ -112,4 +135,4 @@ const TimersMain = ({
 	}
 };
 
-export default TimersMain;
+export default Timers;

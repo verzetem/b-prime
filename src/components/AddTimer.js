@@ -1,5 +1,6 @@
 import React from "react";
 import Loader from 'react-loader-spinner'
+import ReactTooltip from 'react-tooltip'
 
 const AddTimer = ({
 	onSubmit,
@@ -13,7 +14,9 @@ const AddTimer = ({
 	hoursListen,
 	minutesListen,
 	secondsListen,
-	loading2
+	loading2,
+	typeListen,
+	selected
 }) => {
 
 	const loaderSpinner = <Loader type="ThreeDots" color="#FFF" height="27.5"	width="27.5" />
@@ -34,7 +37,6 @@ const AddTimer = ({
 	return (
 		<div className="home add-timer">
 			<h1>Add Timer</h1>
-
 			<form>
 				<div className="form-group">
 					<input
@@ -44,6 +46,18 @@ const AddTimer = ({
 						onChange={e => nameListen(e)}
 						value={newStructure.newName}
 					/>
+					<div className="input-group input-one">
+						<div className="input-group-prepend">
+							<label className="input-group-text" htmlFor="typeSelect">
+								Type
+							</label>
+						</div>
+						<select value={selected} onChange={e => typeListen(e)} className="custom-select" id="typeSelect">
+							<option defaultValue>Choose...</option>
+							<option>Armor</option>
+							<option>Final</option>
+						</select>
+					</div>
 					<input
 						type="text"
 						className="form-control input-one"
@@ -55,30 +69,34 @@ const AddTimer = ({
 			</form>
 			<form className="form-inline">
 				<input
+					data-tip="Days"
 					type="number"
 					className="form-control input-two"
-					placeholder="Days"
+					placeholder="D"
 					onChange={e => daysListen(e)}
 					value={newStructure.newTime.days}
 				/>
 				<input
+					data-tip="Hours"
 					type="number"
 					className="form-control input-two"
-					placeholder="Hours"
+					placeholder="H"
 					onChange={e => hoursListen(e)}
 					value={newStructure.newTime.hours}
 				/>
 				<input
+					data-tip="Minutes"
 					type="number"
 					className="form-control input-two"
-					placeholder="Minutes"
+					placeholder="M"
 					onChange={e => minutesListen(e)}
 					value={newStructure.newTime.minutes}
 				/>
 				<input
+					data-tip="Seconds"
 					type="number"
 					className="form-control input-two"
-					placeholder="Seconds"
+					placeholder="S"
 					onChange={e => secondsListen(e)}
 					value={newStructure.newTime.seconds}
 				/>
@@ -91,7 +109,7 @@ const AddTimer = ({
 			>
 				Reset
 			</button>
-
+			<ReactTooltip type="dark" effect="float"/>
 		</div>
 	);
 };
